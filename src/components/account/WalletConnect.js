@@ -66,86 +66,87 @@ export const WalletConnect = () => {
     }
 
     return (
-        <div className="modal" style={{display: showConnectModal ? 'flex' : 'none'}}>
+            <div className="modal">
 
-            <div className="modal__box">
+                <div className="modal__box">
 
-                <div className="modal__item modal__item--recieve">
+                    <div className="modal__item modal__item--recieve">
 
-                    <form className="form-recieve" action="/" novalidate="novalidate">
+                        <form className="form-recieve" action="/" novalidate="novalidate">
 
-                        <h3 className="form-recieve__title">
-                            You will recieve
-                        </h3>
+                            <h3 className="form-recieve__title">
+                                You will recieve
+                            </h3>
 
-                        <label className="form-recieve__input" click="selectWallet('metamask', $event)">
+                            <label className="form-recieve__input" click="selectWallet('metamask', $event)">
 
-                            <input type="radio" name="modal-form-recieve" class="visuallyhidden" value="MetaMask"/>
+                                <input type="radio" name="modal-form-recieve" class="visuallyhidden" value="MetaMask"/>
 
-                            <span className="form-recieve__image">
+                                <span className="form-recieve__image">
                                 <img src={MetaMask}
                                      srcset="../../assets/img/modal/MetaMask@2x.png 2x" alt=""/>
                             </span>
 
-                            {active ? (
-                                <p className="form-recieve__label">
-                                {formatAddress(account)}
-                            </p>
-                            ) : (
-                                <span className="form-recieve__label" onClick={()=>{
-                                    onConnect(currentConnector, 'MetaMask')
-                            }}>MetaMask</span>
-                            )}
+                                {active ? (
+                                    <p className="form-recieve__label">
+                                        {formatAddress(account)}
+                                    </p>
+                                ) : (
+                                    <span className="form-recieve__label" onClick={() => {
+                                        onConnect(currentConnector, 'MetaMask')
+                                    }}>MetaMask</span>
+                                )}
 
 
-                        </label>
+                            </label>
 
 
-                        <label className="form-recieve__input">
+                            <label className="form-recieve__input">
 
-                            <input type="radio" name="modal-form-recieve" className="visuallyhidden"
-                                   value="Trezor"/>
+                                <input type="radio" name="modal-form-recieve" className="visuallyhidden"
+                                       value="Trezor"/>
 
-                            <span class="form-recieve__image">
+                                <span class="form-recieve__image">
 
                                     <img src="../../assets/img/modal/Trezor.png"
                                          srcset="../../assets/img/modal/Trezor@2x.png 2x" alt=""/>
 
                                 </span>
 
-                            <span className="form-recieve__label">Trezor</span>
+                                <span className="form-recieve__label">Trezor</span>
 
-                        </label>
+                            </label>
 
 
-                        <label className="form-recieve__input">
+                            <label className="form-recieve__input">
 
-                            <input type="radio" name="modal-form-recieve" className="visuallyhidden" value="Ledger"
-                                   checked="checked"/>
+                                <input type="radio" name="modal-form-recieve" className="visuallyhidden" value="Ledger"
+                                       checked="checked"/>
 
-                            <span className="form-recieve__image">
+                                <span className="form-recieve__image">
                                         <img src="../../assets/img/modal/Ledger.png"
                                              srcset="../../assets/img/modal/Ledger@2x.png 2x" alt=""/>
                                     </span>
 
-                            <span class="form-recieve__label">Ledger</span>
+                                <span class="form-recieve__label">Ledger</span>
 
-                        </label>
+                            </label>
 
-                    </form>
+                        </form>
+
+                    </div>
+
+                    <button type="button" className="modal__close modal__close-btn button" aria-label="Close modal"
+                            onClick={() => {
+                                dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
+                            }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"/>
+                        </svg>
+                    </button>
 
                 </div>
-
-                <button type="button" className="modal__close modal__close-btn button" aria-label="Close modal" onClick={()=>{
-                    dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
-                }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                        <path
-                            d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"/>
-                    </svg>
-                </button>
-
-            </div>
 
         </div>
     )

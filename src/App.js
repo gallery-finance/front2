@@ -12,6 +12,7 @@ import {Header} from './components/header/Header'
 import {Pools} from "./pages/pools/Pools";
 import {WalletConnect} from "./components/account/WalletConnect";
 import {ContextProvider} from './reducer';
+import {InitPage} from "./pages/InitPage";
 
 
 function getLibrary(provider) {
@@ -24,8 +25,10 @@ function App() {
     return (
         <ContextProvider>
             <Web3ReactProvider getLibrary={getLibrary}>
-                <div className="App modal-show">
+                <div className="App wrapper modal-show">
+                    <InitPage/>
                     <Router>
+                        {/*<WalletConnect/>*/}
                         <Header/>
                         <Switch>
                             <Route exact path='/index'>
@@ -33,12 +36,12 @@ function App() {
                             </Route>
 
                             <Route exact path='/pools'>
-                                <WalletConnect/>
+
                                 <Pools/>
                             </Route>
                         </Switch>
                     </Router>
-                </div>
+                    </div>
             </Web3ReactProvider>
         </ContextProvider>
     );

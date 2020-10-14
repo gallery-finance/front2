@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import {useActiveWeb3React} from "../../web3";
 import {formatAddress, formatAmount} from "../../utils/format";
 import {mainContext} from '../../reducer'
 import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
@@ -6,6 +7,7 @@ import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
 export const Header = () => {
 
     const {dispatch, state} = useContext(mainContext);
+    const {active, account, library, chainId} = useActiveWeb3React();
 
     return (
         <header className="{'header': true, 'header--bb0': currentRouteName === 'home'}">
@@ -26,7 +28,9 @@ export const Header = () => {
 
                         <nav className="menu">
                             <ul className="menu__list">
-                                <li className="menu__item">About</li>
+                                <li className="menu__item">
+                                    <a className="menu__link">About</a>
+                                </li>
                                 <li className="menu__item">Workshop</li>
                                 <li className="menu__item">Auction</li>
                                 <li className="menu__item">Exhibition hall</li>
@@ -36,7 +40,7 @@ export const Header = () => {
 
                         <div className="header__btn">
                             <div className="buttonContainer">
-                                {<button onClick={()=>{
+                                {!active && <button onClick={()=>{
                                     dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: true});
                                 }} className="btn" type="button" data-modal="recieve">
                                     <span onClick={()=>{
@@ -44,20 +48,15 @@ export const Header = () => {
                                     }}>Unlock wallet</span>
                                 </button>}
 
-                                {/*{<img src="@/assets/img/pending.gif"*/}
-                                {/*      class="pending"*/}
-                                {/*      style="{width: width ? width + 'px' : '32px', height: height ? height + 'px' : '32px'}"*/}
-                                {/*      alt=""/>}*/}
-
-                                {/*{<div className="container open">*/}
-                                {/*    <div className="balance ">*/}
-                                {/*        <p>{formatAmount('1564564')}</p>*/}
-                                {/*    </div>*/}
-                                {/*    <div className="address">*/}
-                                {/*        {formatAddress('0x626cc92a30Fc915c8705B0fFB1289304d0e765FB')}*/}
-                                {/*        <div className="point"></div>*/}
-                                {/*    </div>*/}
-                                {/*</div>}*/}
+                                {active && <div className="container open">
+                                    <div className="balance ">
+                                        <p>{formatAmount('1564564')}</p>
+                                    </div>
+                                    <div className="address">
+                                        {formatAddress(account)}
+                                        <div className="point"></div>
+                                    </div>
+                                </div>}
 
                             </div>
                         </div>

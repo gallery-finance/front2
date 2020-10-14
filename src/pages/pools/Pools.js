@@ -1,5 +1,21 @@
 import React from 'react'
 import {PoolCard} from '../../components/pool/PoolCard'
+import cover_1 from '../../assets/img/card-pool/1.jpg'
+import cover_2 from '../../assets/img/card-pool/2.jpg'
+import cover_3 from '../../assets/img/card-pool/3.jpg'
+import cover_4 from '../../assets/img/card-pool/4.jpg'
+import cover_5 from '../../assets/img/card-pool/5.jpg'
+import cover_6 from '../../assets/img/card-pool/6.jpg'
+
+
+const poolList = [
+    {label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`},
+    {label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`},
+    {label: 'Gallery Santi',cover: cover_3, pair: `YFI`},
+    {label: 'Gallery Picasso',cover: cover_4, pair: `MEME`},
+    {label: 'Gallery Dali',cover: cover_5, pair: `STAKE`},
+    {label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`}
+]
 
 export const Pools = () => {
     return (
@@ -21,7 +37,13 @@ export const Pools = () => {
 
                 <div class="card-pool">
                     <div class="card-pool__list">
-                        <PoolCard pool={{title: 'Gallery Qingming',stake: 'GLF / ETH',label:'5x'}}/>
+                        {poolList.map(item =>{
+                            return (
+                                <PoolCard pool={item}/>
+                            )
+                        })}
+
+
                     </div>
                 </div>
 
