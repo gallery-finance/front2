@@ -1,21 +1,10 @@
 import React, {useEffect, useState} from 'react'
-<<<<<<< HEAD
-=======
 import {Link} from 'react-router-dom';
-import Web3 from 'web3'
->>>>>>> 95a75fa9c446f676649b521186d7164e23a1eba9
 import Grow from '@material-ui/core/Grow';
 import {
-    useBOTInfo,
-    useDEGOInfo,
-    useDONUTInfo,
-    useETHInfo,
     useLeftTime,
-    useMEMEInfo, usePoolCard,
-    useUSDTInfo,
-    useUSDTStaking
+     usePoolCard,
 } from "./Hooks";
-import { Link } from "react-router-dom";
 import {formatAmount} from "../../utils/format";
 import {REQUESTING_DATA} from "../../const";
 
