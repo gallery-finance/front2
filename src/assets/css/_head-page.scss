@@ -22,7 +22,7 @@
 	&__intro {
 
 		font-size: 20px;
-		color: var(--text);
+		color: rgba(255,255,255,.7);
 		margin: 22px 0;
 
 		@media #{$smWidth} {

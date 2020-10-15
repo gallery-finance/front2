@@ -134,6 +134,7 @@ export const WalletConnect = () => {
 
                             </label>
 
+                            <hr />
 
                             <label className="form-recieve__input" onClick={()=>{
                                 onConnect(currentConnector, 'WalletConnect')
@@ -161,6 +162,7 @@ export const WalletConnect = () => {
 
                             </label>
 
+                            <hr />
 
                             <label className="form-recieve__input" onClick={()=>{
                                 onConnect(currentConnector, 'Ledger')
