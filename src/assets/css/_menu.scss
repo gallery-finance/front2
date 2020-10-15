@@ -19,13 +19,6 @@
 
 		margin: 0 24px;
 
-		&.is-current{
-
-			color: var(--yellow);
-			pointer-events: none;
-
-		}
-
 		@media #{$mdWidth} {
 
 			margin: 36px 0;
@@ -40,7 +33,14 @@
 		font-weight: 500;
 		color: inherit;
 		display: block;
-		transform: var(--transitionDefault);
+        transform: var(--transitionDefault);
+        
+        &.is-current{
+
+			color: var(--yellow);
+			pointer-events: none;
+
+		}
 		
 		&.router-link-exact-active,
 		&.router-link-active {

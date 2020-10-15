@@ -1,7 +1,11 @@
 .head-page {
 
-	margin: 116px 0 72px;
-	text-align: center;
+    margin-bottom: 72px;
+    text-align: center;
+    
+    &.head-page--margin-top {
+        margin: 116px 0 72px;
+    }
 
 	@media #{$smWidth} {
 
@@ -37,4 +41,20 @@
 
 	}
 
+}
+
+.arrow-back {
+    margin: 41px 0 58px;
+    
+    a {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    svg {
+        margin-right: 16px;
+    }
 }
