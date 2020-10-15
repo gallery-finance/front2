@@ -1,28 +1,30 @@
-import React, {useContext, useState} from 'react'
-import {useActiveWeb3React} from "../../web3";
-import {formatAddress, formatAmount} from "../../utils/format";
-import {mainContext} from '../../reducer'
-import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
+import React, { useContext, useState } from "react";
+import { useActiveWeb3React } from "../../web3";
+import { formatAddress, formatAmount } from "../../utils/format";
+import { mainContext } from "../../reducer";
+import { HANDLE_SHOW_CONNECT_MODAL } from "../../const";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { Logoicon } from "../../icons";
-
+import {useGLFBalance} from "../../pages/Hooks";
 
 export const Header = () => {
-    const { active, account } = useActiveWeb3React();
-    const {dispatch} = useContext(mainContext);
-    const [showMenu, setShowMenu] = useState(false);
 
+    const { active, account, library, chainId } = useActiveWeb3React();
+    const { dispatch } = useContext(mainContext);
+
+    const [showMenu, setShowMenu] = useState(false);
+    const {glfBalance} = useGLFBalance()
     const location = useLocation();
 
     const handleMenuItemClick = () => {
         setShowMenu(false);
-    }
+    };
 
     return (
-        <header 
-            className={`header ${showMenu ? 'menu-show' : ""}`} 
-            style={location.pathname === "/" ? {borderBottom: "transparent"} : {}}
+        <header
+            className={`header ${showMenu ? "menu-show" : ""}`}
+            style={location.pathname === "/" ? { borderBottom: "transparent" } : {}}
         >
             <div className="center">
                 <div className="header__box">
@@ -103,28 +105,27 @@ export const Header = () => {
                                         <span onClick={() => {}}>Unlock Wallet</span>
                                     </button>
                                 )}
-
-
-                                {active && (
-                                    <div className="container open">
-                                        <div className="balance ">
-                                            <p>{formatAmount("1564564")}</p>
-                                        </div>
-                                        <div className="address">
-                                            {formatAddress(account)}
-                                            <div className="point"></div>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
+
+                    {active && (
+                        <div className="header-account">
+                            <div className="balance">
+                                <p>{glfBalance? formatAmount(glfBalance): 0}</p>
+                            </div>
+                            <div className="address">
+                                {formatAddress(account)}
+                                <div className="point"></div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="visible-md">
-                    <button 
-                        className="button btn-menu-toggle" 
-                        type="button" 
+                    <button
+                        className="button btn-menu-toggle"
+                        type="button"
                         onClick={() => setShowMenu(prev => !prev)}
                     >
                         Menu

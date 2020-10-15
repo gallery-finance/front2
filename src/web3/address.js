@@ -1,3 +1,15 @@
+// GLF
+export function getGLFStakingAddress(chainId) {
+    switch (chainId) {
+        case 1:
+            return  '0xD7AD78B0B839cBE9B0f9bE0b10250779553a4411'
+        case 4:
+            return  '0xD7AD78B0B839cBE9B0f9bE0b10250779553a4411'
+        default:
+            return '0xD7AD78B0B839cBE9B0f9bE0b10250779553a4411'
+    }
+}
+
 // BOT
 export function getBotStakingAddress(chainId) {
     switch (chainId) {
