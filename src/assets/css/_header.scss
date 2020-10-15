@@ -87,7 +87,14 @@
 			padding-top: 20px;
 			justify-content: center;
 
-		}
+        }
+        
+        .buttonContainer {
+            width: 260px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
 
 	}
 
