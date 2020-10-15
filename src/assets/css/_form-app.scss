@@ -1,22 +1,13 @@
 .form-app {
-
-	margin: 142px auto 120px;
 	width: 528px;
 	max-width: 100%;
 	color: var(--bg);
-
-	@media #{$smWidth} {
-
-		margin: 40px auto;
-
-	}
 
 	&__inner {
 
 		background-color: #fff;
 		border-radius: 12px;
 		padding: 60px;
-		margin: 24px 0;
 
 		@media #{$smWidth} {
 
@@ -263,12 +254,14 @@
 
 	&__submit {
 
+		margin-top: 24px;
+
 		&--row {
 
 			display: flex;
 			justify-content: space-between;
 
-			@media #{$smWidth} {
+			@media ($smWidth) {
 
 				display: block;
 
@@ -292,10 +285,23 @@
 		.btn {
 
 			width: 100%;
-			margin-top: 12px;
 			height: 60px;
 			padding: 0;
 			line-height: 60px;
+
+		}
+
+	}
+    
+    &__close-btn {
+
+		position: absolute;
+		top: 24px;
+		right: 24px;
+
+		svg {
+
+			fill: #000;
 
 		}
 
@@ -360,7 +366,11 @@
 
 		display: flex;
 		justify-content: center;
-		margin-bottom: 8px;
+        margin-bottom: 8px;
+        
+        svg {
+            margin: -10px 2px 26px;
+        }
 
 	}
 
