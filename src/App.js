@@ -37,7 +37,7 @@ function App() {
                     <Router>
                         <Header/>
                         <Switch>
-                            <Route exact path='/index'>
+                            <Route path='/index'>
                                 <Home/>
                             </Route>
 
