@@ -8,8 +8,8 @@ import {Web3ReactProvider} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
 
 import './assets/css/style.scss'
-import {Home} from "./home";
 import {Header} from './components/header/Header'
+import {HomePage} from "./pages/HomePage";
 import {Pools} from "./pages/pools/Pools";
 import {ContextProvider} from './reducer';
 import {InitPage} from "./pages/InitPage";
@@ -42,8 +42,8 @@ function App() {
                     <Router>
                         <Header/>
                         <Switch>
-                            <Route exact path='/index'>
-                                <Home/>
+                            <Route exact path='/'>
+                                <HomePage/>
                             </Route>
 
                             <Route path='/pools'>

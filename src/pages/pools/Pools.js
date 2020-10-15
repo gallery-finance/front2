@@ -47,8 +47,8 @@ export const Pools = () => {
             <article className="center">
 
                 <header className="head-page head-page--margin-top">
-                    <h1 className="head-page__title h1">{'Choose the pool to stake'}</h1>
-                    <p className="head-page__intro">{'Buy GLF tokens now on Uniswap'}</p>
+                    <h1 className="head-page__title h1">Choose the staking pool</h1>
+                    <p className="head-page__intro">Buy GLF tokens now on Uniswap</p>
 
                     <div className="head-page__btn">
                         <a href="/" className="btn">
