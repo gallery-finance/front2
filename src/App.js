@@ -41,8 +41,7 @@ function App() {
                                 <Home/>
                             </Route>
 
-                            <Route path='/pools'>
-                                <Pools/>
+                            <Route path='/pools' component={Pools}>
                             </Route>
 
                             <Route path='/staking-eth'>
