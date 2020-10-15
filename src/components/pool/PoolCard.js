@@ -34,7 +34,7 @@ export const PoolCard = ({pool}) => {
                         <b>{pool.pair}</b>
                         <svg width="20" height="21" viewBox="0 0 20 21">
                             <path d="M13.48 9.67L9 5.2l1.18-1.18 6.48 6.48-6.48 6.48L9 15.8l4.47-4.47H3.33V9.67h10.15z"
-                                  stroke-width=".8"/>
+                                  strokeWidth=".8"/>
                         </svg>
                     </a>
                     <p className="card-pool__earn">
