@@ -5,6 +5,7 @@ import {InjectedConnector} from "@web3-react/injected-connector";
 import {GALLERY_SELECT_WEB3_CONTEXT, HANDLE_SHOW_CONNECT_MODAL, HANDLE_WEB3_CONTEXT} from "../../const";
 import {formatAddress} from "../../utils/format";
 import MetaMask from '../../assets/img/modal/MetaMask.png'
+import MetaMask2 from '../../assets/img/modal/MetaMask@2x.png'
 import walletConnectIcon from '../../assets/img/modal/walletConnectIcon.svg'
 import ledger_icon from '../../assets/img/modal/Ledger.png'
 import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
@@ -104,7 +105,7 @@ export const WalletConnect = () => {
                         <form className="form-recieve" action="/" novalidate="novalidate">
 
                             <h3 className="form-recieve__title">
-                                You will recieve
+                                Please select a wallet
                             </h3>
 
                             <label className="form-recieve__input" click="selectWallet('metamask', $event)">
@@ -118,7 +119,7 @@ export const WalletConnect = () => {
 
                                 <span className="form-recieve__image">
                                 <img src={MetaMask}
-                                     srcSet="../../assets/img/modal/MetaMask@2x.png 2x" alt=""/>
+                                     srcSet={`${MetaMask2} 2x`} alt=""/>
                             </span>
 
                                 {connectedName === 'MetaMask' ? (
