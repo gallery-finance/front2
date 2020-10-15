@@ -1,17 +1,27 @@
 import React, { useContext, useEffect } from "react";
+import Lottie from "react-lottie";
 
 import { HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
-
+import loading from '../../assets/loading.json'
 import { modalLoader } from "../../assets/js/modal-loader";
+
+const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loading,
+    rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+    }
+};
 
 export const WaitingWalletConfirmModal = () => {
     const { dispatch, state } = useContext(mainContext);
     const { showWaitingWalletConfirmModal } = state;
 
-    useEffect(() => {
-        new modalLoader("canvas");
-    }, []);
+    // useEffect(() => {
+    //     new modalLoader("canvas");
+    // }, []);
 
     return (
         <div className="modal">
@@ -19,7 +29,7 @@ export const WaitingWalletConfirmModal = () => {
                 <div className="form-app">
                     <div className="form-app__inner transction-submitted">
                         <div className="transction-submitted__loading">
-                            <div id="canvas"></div>
+                            <Lottie width={200} height={200} options={defaultOptions}/>
                         </div>
                         <h3 className="form-app__title h3">
                             {showWaitingWalletConfirmModal.title}
