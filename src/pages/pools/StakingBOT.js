@@ -23,7 +23,7 @@ import {mainContext} from "../../reducer";
 import {useBOTStaking} from "../../components/pool/Hooks";
 import {BackButton} from "../../components/BackButton";
 import {formatAmount} from "../../utils/format";
-import {BOTLightIcon, BOTRedIcon, GLFIcon} from "../../icons";
+import {BOTLightIcon, BOTRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 
 const {toWei, fromWei} = Web3.utils
