@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useActiveWeb3React} from "../../web3";
 import {formatAddress, formatAmount} from "../../utils/format";
 import {mainContext} from '../../reducer'
@@ -6,11 +7,12 @@ import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
 
 export const Header = () => {
 
+    const history = useHistory();
     const {dispatch, state} = useContext(mainContext);
     const {active, account, library, chainId} = useActiveWeb3React();
 
     return (
-        <header className="{'header': true, 'header--bb0': currentRouteName === 'home'}">
+        <header className="header">
             <div className="center">
                 <div className="header__box">
 
@@ -34,7 +36,9 @@ export const Header = () => {
                                 <li className="menu__item">Workshop</li>
                                 <li className="menu__item">Auction</li>
                                 <li className="menu__item">Exhibition hall</li>
-                                <li className="menu__item">Pools</li>
+                                <li onClick={()=>{
+                                    history.push('/pools')
+                                }} className="menu__item">Pools</li>
                             </ul>
                         </nav>
 
