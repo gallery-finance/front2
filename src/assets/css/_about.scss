@@ -1,9 +1,13 @@
 .about {
 
-	display: flex;
 	position: relative;
 	flex-shrink: 0;
-	flex-grow: 1;
+    flex-grow: 1;
+    text-align: center;
+    
+    .gold-color {
+        color: var(--yellow);
+    }
 
 	@media #{$smWidth} {
 

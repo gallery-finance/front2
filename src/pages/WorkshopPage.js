@@ -13,13 +13,7 @@ export const WorkshopPage = () => {
     return (
         <article className="center">
             <header className="workshop-head">
-                <h1 className="workshop-head__title h1">The first workshop</h1>
-
-                <p className="workshop-head__right">
-                    <Link to="/" className="workshop-head__btn">
-                        Propose A New&nbsp;&nbsp;Workshop
-                    </Link>
-                </p>
+                <h1 className="workshop-head__title h1">Workshop #1</h1>
             </header>
 
             <div className="workshop-info">
@@ -28,7 +22,7 @@ export const WorkshopPage = () => {
                         <dt className="workshop-info__dl-dt">Theme:</dt>
 
                         <dd className="workshop-info__dl-dd">
-                            Arts of the 10 community most-wanted figures
+                            10 community most-wanted figures, portrayed
                         </dd>
                     </div>
 
@@ -78,15 +72,7 @@ export const WorkshopPage = () => {
                     <StageCard
                         number={1}
                         stageText="Stage One"
-                        title={
-                            <>
-                                Voting for the 10{" "}
-                                <span className="white-space-nowrap">
-                                    most-wanted
-                                </span>{" "}
-                                figures
-                            </>
-                        }
+                        title="Vote for the 10 most-wanted figures"
                         timeIn="00/00/20 - 00/00/20"
                         status="Ongoing"
                         description={
@@ -103,29 +89,28 @@ export const WorkshopPage = () => {
                     <StageCard
                         number={2}
                         stageText="Stage Two"
-                        title="Voting for the Artwork"
+                        title="Vote for the best artwork"
                         timeIn="00/00/20 - 00/00/20"
                         status="Ongoing"
                         description={
                             <>
-                                Artists can draw and submit their artworks those 10
-                                figures, others can vote for the artwork they would
-                                love. TOP3 mostly-voted arts for each figure will be
-                                selected to next stage: their author and voters will
-                                share 10,000 GLF tokens.{" "}
+                                Once the top-10 figures are selected, artists get to
+                                draw them and submit the result, while others get to
+                                vote for the entries they like the most. Once the
+                                vote is over, the top-3 submissions will move onto
+                                the next stage; their authors and voters will share
+                                10,000 GLF tokens as a reward.{" "}
                                 <Link to="/">Read details</Link>
                             </>
                         }
-                        disabled
                     />
                     <StageCard
                         number={3}
                         stageText="Stage Three"
-                        title="NFT mining"
+                        title="Mine the resulting NFTs"
                         timeIn="00/00/20 - 00/00/20"
                         status="Ongoing"
-                        description="Selected artworks will be made into NFTs for GLF token holders to mine. GLF token holders can stake and earn reward points. You can use your reward points to redeem NFT artworks. Then you redeemed NFT will be in your wallet for collecting or auctioning."
-                        disabled
+                        description="The top-3 artworks are turned into NFTs, and GLF holders proceed to mine them. The holders can use their reward points (obtained through staking) to redeem the NFT artworks and get them transferred to their wallets. The obtained NFTs can be held for collection purposes or sold via the auction."
                     />
                 </div>
             </div>

@@ -11,29 +11,25 @@ import image7 from "../assets/img/auction/img.png";
 import image8 from "../assets/img/auction/img@2x.png";
 
 export const AuctionPage = () => (
-    <article class="auction center">
-        <div class="auction__body">
-            <h1 class="h1">Decentralized NFT Auction Environment</h1>
+    <article className="auction center">
+        <div className="auction__body">
+            <h1 className="h1">Decentralized NFT Auction</h1>
 
             <p>
-                We think artist (the creator of the NFT) should always be rewarded.
-                For all the auctions, we allocate 50% of transaction fees to the
-                origial creators of the NFT.
+                We believe that the artists should always be rewarded. That is why
+                when you create an art piece, you will earn money every time it is
+                sold via the auction: we allocate 50% of the transaction fees to the
+                original creators of sold NFTs.
             </p>
 
-            <p>
-                When you create a great art piece, you will earn money from every
-                single hand-exchange sale from it.
-            </p>
-
-            <div class="auction__btn">
+            <div className="auction__btn">
                 <Link to="/" className="">
                     Coming Soon!
                 </Link>
             </div>
         </div>
 
-        <div class="auction__img">
+        <div className="auction__img">
             <picture>
                 <source
                     srcSet={`${image1} 1x, ${image2} 2x`}
