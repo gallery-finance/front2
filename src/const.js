@@ -25,7 +25,7 @@ export const waitingForApprove = {show: true, title: 'Waiting for Approve' ,cont
 
 export const waitingForConfirm = {show: true, title: 'Waiting For Confirmation' ,content: 'Confirm this transaction in your wallet'}
 
-export const waitingPending = {show: true, title: 'Transction submitted' ,content: 'View on Etherscan'}
+export const waitingPending = {show: true, title: 'Transaction submitted' ,content: 'View transaction'}
 
 export const glf_icon = (
     <svg className="statistics__logo" width="70" height="70" viewBox="0 0 70 70">

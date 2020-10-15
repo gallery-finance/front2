@@ -24,9 +24,16 @@ export const WaitingWalletConfirmModal = () => {
                         <h3 className="form-app__title h3">
                             {showWaitingWalletConfirmModal.title}
                         </h3>
-                        <p className="transction-submitted__text">
-                            {showWaitingWalletConfirmModal.content}
-                        </p>
+                        {showWaitingWalletConfirmModal.hash? (
+                            <a target="_blank" href={`https://rinkeby.etherscan.io/tx/${showWaitingWalletConfirmModal.hash}`} className="transction-submitted__text">
+                                {showWaitingWalletConfirmModal.content}
+                            </a>
+                        ) :(
+                            <p className="transction-submitted__text">
+                                {showWaitingWalletConfirmModal.content}
+                            </p>
+                        )}
+
                         <button
                             type="button"
                             className="form-app__close-btn button"

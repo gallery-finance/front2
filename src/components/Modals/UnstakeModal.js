@@ -86,7 +86,7 @@ export const UnstakeModal = ({amount, tokenName, onChange, onConfirm, onCancel, 
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            {(balance && symbol) &&`${formatAmount(balance)} ${symbol}`} <br />
+                            Balance: {(balance && symbol) &&`${formatAmount(balance)} ${symbol}`} <br />
 
                         </p>
 

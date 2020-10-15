@@ -86,8 +86,7 @@ export const StakeModal = ({amount, onConfirm, onCancel, onChange, balance, icon
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            {balance && formatAmount(balance)} {symbol} <br />
-                            GalleryFinanceSwap LP Token
+                            Balance: {balance && formatAmount(balance)} {symbol} <br />
                         </p>
 
                         <div className="form-app__submit form-app__submit--row">

@@ -41,6 +41,8 @@ export const StakingBOT = () => {
     const [staked, setStaked] = useState(false)
     const [unStaked, setUnStaked] = useState(false)
     const [claimed, setClaimed] = useState(false)
+    const [txHash, setTxHash] = useState('')
+
 
 
     const [amount, setAmount] = useState()
@@ -78,9 +80,10 @@ export const StakingBOT = () => {
                 await contract.methods.stake(weiAmount)
                     .send({from: account})
                     .on('transactionHash', hash => {
+                        setTxHash(hash)
                         dispatch({
                             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-                            showWaitingWalletConfirmModal: waitingPending
+                            showWaitingWalletConfirmModal: {...waitingPending, hash}
                         });
                     })
                     .on('receipt', (_, receipt) => {
@@ -151,9 +154,10 @@ export const StakingBOT = () => {
             await contract.methods.withdraw(weiAmount)
                 .send({from: account})
                 .on('transactionHash', hash => {
+                    setTxHash(hash)
                     dispatch({
                         type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-                        showWaitingWalletConfirmModal: waitingPending
+                        showWaitingWalletConfirmModal: {...waitingPending, hash}
                     });
                 })
                 .on('receipt', (_, receipt) => {
@@ -209,9 +213,10 @@ export const StakingBOT = () => {
             await contract.methods.getReward()
                 .send({from: account})
                 .on('transactionHash', hash => {
+                    setTxHash(hash)
                     dispatch({
                         type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-                        showWaitingWalletConfirmModal: waitingPending
+                        showWaitingWalletConfirmModal: {...waitingPending, hash}
                     });
                 })
                 .on('receipt', (_, receipt) => {

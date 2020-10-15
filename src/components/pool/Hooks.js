@@ -138,7 +138,6 @@ export const useBOTStaking = () =>{
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
-                        const date = new Date(time);
                         const now = new Date();
                         const lefttime = now - time;
                         let lefth = Math.floor(lefttime / 1000 / 60);
