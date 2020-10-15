@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { GLFIcon, BOTLightIcon } from "../../icons";
 import { HANDLE_SHOW_STAKE_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
+import {formatAmount} from "../../utils/format";
 
 export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
     const { dispatch } = useContext(mainContext);
@@ -85,7 +86,7 @@ export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            1021.545848748454484848484 GLF-ETH <br />
+                            {balance && formatAmount(balance)} GLF-BOT <br />
                             GalleryFinanceSwap LP Token
                         </p>
 

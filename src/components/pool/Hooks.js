@@ -62,22 +62,36 @@ export const useBOTInfo = () =>{
 export const useBOTStaking = () =>{
     const {account, active, library, chainId} = useActiveWeb3React()
     const [ balance, setBalance] = useState()
+    const [ stakedAmount, setStakedAmount] = useState()
     const [ rewards, setRewards] = useState()
 
     const [ total, setTotal] = useState()
 
 
     useEffect(()=>{
+        
+        try {
+            const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
+            contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
+                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
+                contract.methods.balanceOf(account).call().then(res =>{
+                    console.log('bot balanceOf:',res)
+                    setStakedAmount(res)
+                })
+            })
+        }catch (e) {
+            console.log('load events error:',e)
+        }
+        
         if(active){
             try{
                 const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.balanceOf(account).call().then().then(res =>{
+                contract.methods.balanceOf(account).call().then(res =>{
                     console.log('bot balanceOf:',res)
-                    setBalance(res)
+                    setStakedAmount(res)
                 })
             }catch (e) {
                 console.log('load totalSupply error:',e)
-
             }
 
             try{
@@ -108,7 +122,7 @@ export const useBOTStaking = () =>{
 
 
 
-    return {balance, rewards, total}
+    return {balance, rewards, stakedAmount, total}
 }
 
 export const useLeftTime = () => {

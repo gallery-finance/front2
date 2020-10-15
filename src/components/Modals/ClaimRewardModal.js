@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { HANDLE_SHOW_REWARD_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 
-export const ClaimRewardModal = () => {
+export const ClaimRewardModal = ({onCancel, onConfirm}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -120,16 +120,11 @@ export const ClaimRewardModal = () => {
                             <button
                                 className="btn btn--outline btn--medium"
                                 type="button"
-                                onClick={() => {
-                                    dispatch({
-                                        type: HANDLE_SHOW_REWARD_MODAL,
-                                        showRewardModal: false
-                                    });
-                                }}
+                                onClick={onCancel}
                             >
                                 Cancel
                             </button>
-                            <button className="btn btn--medium">Confirm</button>
+                            <button type="button" className="btn btn--medium" onClick={onConfirm}>Confirm</button>
                         </div>
                     </div>
                 </form>

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { HANDLE_SHOW_STAKED_TOKENS_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 
-export const StakedTokensModal = () => {
+export const StakedTokensModal = ({onOk, amount, symbol}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -17,40 +17,29 @@ export const StakedTokensModal = () => {
                                     d="M32.92 19.15l-1.02-1.03V49.4h-3.8V18.12l-1.02 1.03-12.99 12.98-2.69-2.69L30 10.84l18.6 18.6-2.69 2.7-12.99-13z"
                                     stroke="#FCE7B4"
                                     strokeWidth="1.2"
-                                ></path>
+                                />
                             </svg>
                         </div>
                         <div className="form-app__title h3">
                             <p className="color-gray">
                                 You have successfully staked
                             </p>
-                            100.222345 GLF
+                            {`${amount} ${symbol}`}
                         </div>
                         <button
                             type="button"
                             className="transction-submitted__btn btn"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_STAKED_TOKENS_MODAL,
-                                    showStakedTokensModal: false
-                                });
-                            }}
-                        >
+                            onClick={onOk}>
                             Ok
                         </button>
                         <button
                             type="button"
                             className="form-app__close-btn button"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_STAKED_TOKENS_MODAL,
-                                    showStakedTokensModal: false
-                                });
-                            }}
+
                             aria-label="Close"
                         >
                             <svg width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"></path>
+                                <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"/>
                             </svg>
                         </button>
                     </div>

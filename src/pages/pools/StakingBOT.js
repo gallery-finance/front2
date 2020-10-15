@@ -1,5 +1,12 @@
 import React, {useContext, useState} from 'react'
-import {StakeModal, UnstakeModal} from "../../components/Modals";
+import {
+    ClaimRewardModal,
+    FailedTransactionModal,
+    StakedTokensModal,
+    StakeModal,
+    UnstakedTokensModal,
+    UnstakeModal
+} from "../../components/Modals";
 import {getContract, useActiveWeb3React} from "../../web3";
 import ERC20 from "../../web3/abi/ERC20.json";
 import {getBotAddress, getBotStakingAddress} from "../../web3/address";
@@ -18,10 +25,16 @@ const {toWei, fromWei} = Web3.utils
 
 export const StakingBOT = () => {
 
-    const {dispatch} = useContext(mainContext);
-    const {balance, rewards, total} = useBOTStaking()
+    const {dispatch, state} = useContext(mainContext);
+    const {showFailedTransactionModal} = state
+    const {balance, rewards, stakedAmount, total} = useBOTStaking()
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
+    const [claiming, setClaiming] = useState(false)
+    const [staked, setStaked] = useState(false)
+    const [unStaked, setUnStaked] = useState(false)
+    const [claimed, setClaimed] = useState(false)
+
 
     const [amount, setAmount] = useState(false)
 
@@ -62,12 +75,11 @@ export const StakingBOT = () => {
                             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
                             showWaitingWalletConfirmModal: waitingPending
                         });
-
-
                     })
                     .on('receipt', (_, receipt) => {
                         console.log('BOT staking success')
                         setStaking(false)
+                        setStaked(true)
                         dispatch({
                             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
                             showWaitingWalletConfirmModal: waitingForInit
@@ -140,6 +152,7 @@ export const StakingBOT = () => {
                 .on('receipt', (_, receipt) => {
                     console.log('BOT staking success')
                     setUnStaking(false)
+                    setUnStaked(true)
                     dispatch({
                         type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
                         showWaitingWalletConfirmModal: waitingForInit
@@ -263,7 +276,7 @@ export const StakingBOT = () => {
 
                             <div className="statistics__dl-column">
                                 <dt className="statistics__dl-dt">
-                                    {rewards? formatAmount(rewards) : 'data requesting....'}
+                                    {rewards ? formatAmount(rewards) : 'data requesting....'}
                                 </dt>
                                 <dd className="statistics__dl-dd">
                                     GLF Earned
@@ -272,7 +285,16 @@ export const StakingBOT = () => {
 
                         </dl>
 
-                        <a className="statistics__btn btn" onClick={onClaim}>
+                        <a className="statistics__btn btn" onClick={() => {
+                            if (!active) {
+                                dispatch({
+                                    type: HANDLE_SHOW_CONNECT_MODAL,
+                                    showConnectModal: true
+                                });
+                                return
+                            }
+                            setClaiming(true)
+                        }}>
                             Claim Rewards
                         </a>
 
@@ -296,7 +318,7 @@ export const StakingBOT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    {balance? formatAmount(balance) : 'data requesting....'}
+                                    {stakedAmount ? formatAmount(stakedAmount) : 'data requesting....'}
                                 </dd>
 
                             </div>
@@ -365,7 +387,7 @@ export const StakingBOT = () => {
                             </div>
 
                         </dl>
-                        <a className="statistics__btn btn" onClick={()=>{
+                        <a className="statistics__btn btn" onClick={() => {
                             if (!active) {
                                 dispatch({
                                     type: HANDLE_SHOW_CONNECT_MODAL,
@@ -389,6 +411,7 @@ export const StakingBOT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <StakeModal
+                            balance={balance}
                             onChange={(e) => {
                                 setAmount(e.target.value)
                             }}
@@ -404,12 +427,58 @@ export const StakingBOT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <UnstakeModal
+                            balance={balance}
                             onChange={(e) => {
                                 setAmount(e.target.value)
                             }}
                             onConfirm={onUnStake}
                             onCancel={() => {
                                 setUnStaking(false)
+                            }}/>
+                    </div>
+                </div>
+            )}
+
+            {claiming && (
+                <div className="modal-show">
+                    <div className="wrapper">
+                        <ClaimRewardModal
+                            onConfirm={onClaim}
+                            onCancel={() => {
+                                setClaiming(false)
+                            }}/>
+                    </div>
+                </div>
+            )}
+
+            {showFailedTransactionModal && (
+                <div className="modal-show">
+                    <div className="wrapper">
+                        <FailedTransactionModal/>
+                    </div>
+                </div>
+            )}
+
+            {staked && (
+                <div className="modal-show">
+                    <div className="wrapper">
+                        <StakedTokensModal
+                            amount={amount}
+                            symbol={'BOT'}
+                            onOk={() => {
+                                setStaked(false)
+                            }}/>
+                    </div>
+                </div>
+            )}
+            {unStaked && (
+                <div className="modal-show">
+                    <div className="wrapper">
+                        <UnstakedTokensModal
+                            amount={amount}
+                            symbol={'BOT'}
+                            onOk={() => {
+                                setUnStaked(false)
                             }}/>
                     </div>
                 </div>

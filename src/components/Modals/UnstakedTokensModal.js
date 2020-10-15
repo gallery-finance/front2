@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { HANDLE_SHOW_UNSTAKED_TOKENS_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 
-export const UnstakedTokensModal = () => {
+export const UnstakedTokensModal = ({onOk, amount, symbol}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -26,7 +26,7 @@ export const UnstakedTokensModal = () => {
                             <p className="color-gray">
                                 You have successfully unstaked
                             </p>
-                            100.222345 GLF
+                            {`${amount} ${symbol}`}
                         </div>
                         <button
                             type="button"
@@ -43,12 +43,7 @@ export const UnstakedTokensModal = () => {
                         <button
                             type="button"
                             className="form-app__close-btn button"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_UNSTAKED_TOKENS_MODAL,
-                                    showUnstakedTokensModal: false
-                                });
-                            }}
+                            onClick={onOk}
                             aria-label="Close"
                         >
                             <svg width="24" height="24" viewBox="0 0 24 24">
