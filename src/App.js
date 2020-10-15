@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import {Web3ReactProvider} from "@web3-react/core";
 import {Web3Provider} from "@ethersproject/providers";
-import './App.css';
+
 import './assets/css/style.scss'
 import {Home} from "./home";
 import {Header} from './components/header/Header'
@@ -19,6 +19,10 @@ import {StakingUSDT} from "./pages/pools/StakingUSDT";
 import {StakingMEME} from "./pages/pools/StakingMEME";
 import {StakingDEGO} from "./pages/pools/StakingDEGO";
 import {StakingDONUT} from "./pages/pools/StakingDONUT";
+import {AboutPage} from "./pages/AboutPage";
+import {WorkshopPage} from "./pages/WorkshopPage";
+import {AuctionPage} from "./pages/AuctionPage";
+import {ExhibitionHallPage} from "./pages/ExhibitionHallPage";
 import {Footer} from "./components/Footer";
 
 
@@ -32,7 +36,7 @@ function App() {
     return (
         <ContextProvider>
             <Web3ReactProvider getLibrary={getLibrary}>
-                <div className="App wrapper modal-show">
+                <div className="wrapper modal-show">
                     <InitPage/>
                     <Router>
                         <Header/>
@@ -68,6 +72,14 @@ function App() {
                             <Route path='/staking-donut'>
                                 <StakingDONUT/>
                             </Route>
+
+                            <Route path='/about' component={AboutPage} />
+
+                            <Route path='/workshop' component={WorkshopPage} />
+
+                            <Route path='/auction' component={AuctionPage} />
+
+                            <Route path='/exhibition-hall' component={ExhibitionHallPage} />
 
                         </Switch>
                         <Footer/>

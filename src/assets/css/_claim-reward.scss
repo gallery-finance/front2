@@ -1,5 +1,10 @@
 .claim-reward {
 
+
+    .checkbox {
+        text-align: left;
+    }
+
 	&__title {
 
 		font-weight: 400;
@@ -68,7 +73,7 @@
 		background-color: rgba(196,196,196,.2);
 		border-radius: 8px;
 		font-size: 14px;
-		color: #000;
+        color: #000;
 
 		&-caption {
 

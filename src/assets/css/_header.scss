@@ -4,16 +4,16 @@
 	z-index: 9;
 	border-bottom: 1px solid rgba(255, 255, 255, .1);
 
-	&--bb0 {
-
-		border-bottom-color: transparent;
-
-	}
-
 	.center {
 
 		width: 1380px;
 		padding: 0 20px;
+
+	}
+
+	&--bb0 {
+
+		border-bottom-color: transparent;
 
 	}
 

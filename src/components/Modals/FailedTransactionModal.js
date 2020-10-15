@@ -11,16 +11,12 @@ export const FailedTransactionModal = () => {
             <div className="modal__box">
                 <div className="form-app">
                     <div className="form-app__inner transction-submitted">
-                        <div className="transction-submitted__logo">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M30.5 56a25.5 25.5 0 100-51 25.5 25.5 0 000 51zm0-2.04a23.46 23.46 0 100-46.92 23.46 23.46 0 000 46.92zm-.04-14.28c-7.1 0-11.18 4.08-11.18 4.08v-2.04s4.08-4.08 11.18-4.08 11.26 4.08 11.26 4.08v2.04s-4.16-4.08-11.26-4.08zm10.36-9.06l-5.77-5.77 5.77-5.77 1.45 1.45-4.33 4.32 4.33 4.33-1.45 1.44zM20.18 19.08l5.77 5.77-5.77 5.77-1.45-1.44 4.33-4.33-4.33-4.32 1.45-1.45z"
-                                    stroke="#000"
-                                    strokeWidth=".5"
-                                ></path>
-                            </svg>
+                        <div class="emoji  emoji--sad">
+                            <div class="emoji__face">
+                                <div class="emoji__eyebrows"></div>
+                                <div class="emoji__eyes"></div>
+                                <div class="emoji__mouth"></div>
+                            </div>
                         </div>
 
                         <h3 className="form-app__title h3">

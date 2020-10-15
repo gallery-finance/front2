@@ -11,14 +11,11 @@ export const StakedTokensModal = ({onOk, amount, symbol}) => {
             <div className="modal__box">
                 <form className="form-app" action="/">
                     <div className="form-app__inner transction-submitted">
-                        <div className="transction-submitted__logo">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
-                                <path
-                                    d="M32.92 19.15l-1.02-1.03V49.4h-3.8V18.12l-1.02 1.03-12.99 12.98-2.69-2.69L30 10.84l18.6 18.6-2.69 2.7-12.99-13z"
-                                    stroke="#FCE7B4"
-                                    strokeWidth="1.2"
-                                />
-                            </svg>
+                        <div class="emoji emoji--yay">
+                            <div class="emoji__face">
+                                <div class="emoji__eyebrows"></div>
+                                <div class="emoji__mouth"></div>
+                            </div>
                         </div>
                         <div className="form-app__title h3">
                             <p className="color-gray">

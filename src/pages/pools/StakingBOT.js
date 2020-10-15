@@ -19,6 +19,7 @@ import {
 } from "../../const";
 import {mainContext} from "../../reducer";
 import {useBOTStaking} from "../../components/pool/Hooks";
+import {BackButton} from "../../components/BackButton";
 import {formatAmount} from "../../utils/format";
 
 const {toWei, fromWei} = Web3.utils
@@ -241,6 +242,9 @@ export const StakingBOT = () => {
 
     return (
         <article className="center">
+
+            <BackButton />
+
             <header className="head-page">
 
                 <h1 className="head-page__title h1">

@@ -131,8 +131,8 @@ export const InitPage = () => {
                 </div>
             )}
             {showWaitingWalletConfirmModal.show && (
-                <div className="modal-show">
-                    <div className="wrapper">
+                <div className="modal-show" style={{zIndex: 11}}>
+                    <div className="wrapper" >
                         <WaitingWalletConfirmModal />
                     </div>
                 </div>
