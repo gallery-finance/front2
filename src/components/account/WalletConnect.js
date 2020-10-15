@@ -2,9 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useWeb3React} from "@web3-react/core";
 import {mainContext} from '../../reducer'
 import {InjectedConnector} from "@web3-react/injected-connector";
-import {HANDLE_SHOW_CONNECT_MODAL, HANDLE_WEB3_CONTEXT} from "../../const";
+import {GALLERY_SELECT_WEB3_CONTEXT, HANDLE_SHOW_CONNECT_MODAL, HANDLE_WEB3_CONTEXT} from "../../const";
 import {formatAddress} from "../../utils/format";
 import MetaMask from '../../assets/img/modal/MetaMask.png'
+import walletConnectIcon from '../../assets/img/modal/walletConnectIcon.svg'
+import ledger_icon from '../../assets/img/modal/Ledger.png'
+import {WalletConnectConnector} from "@web3-react/walletconnect-connector";
+import {LedgerConnector} from "@web3-react/ledger-connector";
 
 const injected = new InjectedConnector({
     supportedChainIds: [1, 3, 4, 5, 42]
@@ -16,9 +20,23 @@ const RPC_URLS = {
     4: "https://rinkeby.infura.io/v3/8f6d3d5d7a1442a38d9e8050c31c1884"
 };
 
+const walletconnect = new WalletConnectConnector({
+    rpc: {1: RPC_URLS[1]},
+    bridge: "https://bridge.walletconnect.org",
+    qrcode: true,
+    pollingInterval: POLLING_INTERVAL
+});
+
+const ledger = new LedgerConnector({
+    chainId: 1,
+    url: RPC_URLS[1],
+    pollingInterval: POLLING_INTERVAL
+});
 
 const wallets = {
     MetaMask: injected,
+    WalletConnect: walletconnect,
+    Ledger: ledger,
     //TrustWallet: injected,
     //Squarelink: squarelink,
     //Torus: torus,
@@ -28,7 +46,7 @@ const wallets = {
 export const WalletConnect = () => {
 
     const {dispatch, state} = useContext(mainContext);
-    const {showConnectModal} = state
+    const [connectedName, setConnectedName] = useState()
 
     const context = useWeb3React();
 
@@ -52,16 +70,27 @@ export const WalletConnect = () => {
     }, [activatingConnector]);
 
     useEffect(() => {
+        const localContent = window && window.localStorage.getItem(GALLERY_SELECT_WEB3_CONTEXT)
+        console.log('wallet content', localContent)
+        if (localContent) {
+            setConnectedName(localContent)
+        }
+    }, [])
+
+
+    useEffect(() => {
         console.log(account, account, context, library)
         if (account && active && library) {
             console.log('tag---->')
-            dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
+            //dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: false});
         }
     }, [account]);
 
     function onConnect(currentConnector, name) {
         console.log('onConnect:')
         setActivatingConnector(currentConnector);
+        setConnectedName(name)
+        window && window.localStorage.setItem(GALLERY_SELECT_WEB3_CONTEXT, name)
         activate(wallets[name]);
     }
 
@@ -80,16 +109,21 @@ export const WalletConnect = () => {
 
                             <label className="form-recieve__input" click="selectWallet('metamask', $event)">
 
-                                <input type="radio" name="modal-form-recieve" class="visuallyhidden" value="MetaMask"/>
+                                <input
+                                    type="radio"
+                                    name="modal-form-recieve"
+                                    class="visuallyhidden"
+                                    value="MetaMask"
+                                    value="WalletConnect" checked={connectedName === 'MetaMask'}/>
 
                                 <span className="form-recieve__image">
                                 <img src={MetaMask}
                                      srcset="../../assets/img/modal/MetaMask@2x.png 2x" alt=""/>
                             </span>
 
-                                {active ? (
+                                {connectedName === 'MetaMask' ? (
                                     <p className="form-recieve__label">
-                                        {formatAddress(account)}
+                                        {account && formatAddress(account)}
                                     </p>
                                 ) : (
                                     <span className="form-recieve__label" onClick={() => {
@@ -101,34 +135,53 @@ export const WalletConnect = () => {
                             </label>
 
 
-                            <label className="form-recieve__input">
+                            <label className="form-recieve__input" onClick={()=>{
+                                onConnect(currentConnector, 'WalletConnect')
+                            }}>
 
                                 <input type="radio" name="modal-form-recieve" className="visuallyhidden"
-                                       value="Trezor"/>
+                                       value="WalletConnect" checked={connectedName === 'WalletConnect'}/>
 
                                 <span class="form-recieve__image">
 
-                                    <img src="../../assets/img/modal/Trezor.png"
-                                         srcset="../../assets/img/modal/Trezor@2x.png 2x" alt=""/>
+                                    <img src={walletConnectIcon} alt=""/>
 
                                 </span>
 
-                                <span className="form-recieve__label">Trezor</span>
+                                {connectedName === 'WalletConnect' ? (
+                                    <p className="form-recieve__label">
+                                        {account && formatAddress(account)}
+                                    </p>
+                                ) : (
+                                    <span className="form-recieve__label" onClick={() => {
+                                        console.log('connect to wallet')
+                                        onConnect(currentConnector, 'WalletConnect')
+                                    }}>WalletConnect</span>
+                                )}
 
                             </label>
 
 
-                            <label className="form-recieve__input">
+                            <label className="form-recieve__input" onClick={()=>{
+                                onConnect(currentConnector, 'Ledger')
+                            }}>
 
                                 <input type="radio" name="modal-form-recieve" className="visuallyhidden" value="Ledger"
-                                       checked="checked"/>
+                                       checked={connectedName === 'Ledger'}/>
 
                                 <span className="form-recieve__image">
-                                        <img src="../../assets/img/modal/Ledger.png"
-                                             srcset="../../assets/img/modal/Ledger@2x.png 2x" alt=""/>
+                                        <img src={ledger_icon} alt=""/>
                                     </span>
 
-                                <span class="form-recieve__label">Ledger</span>
+                                {connectedName === 'Ledger' ? (
+                                    <p className="form-recieve__label">
+                                        {account && formatAddress(account)}
+                                    </p>
+                                ) : (
+                                    <span className="form-recieve__label" onClick={() => {
+                                        onConnect(currentConnector, 'Ledger')
+                                    }}>Ledger</span>
+                                )}
 
                             </label>
 

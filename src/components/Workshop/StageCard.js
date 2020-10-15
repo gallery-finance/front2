@@ -7,8 +7,7 @@ export const StageCard = ({
     title,
     timeIn,
     status,
-    description,
-    disabled
+    description
 }) => {
     return (
         <div className="workshop-cards__item">
@@ -32,12 +31,7 @@ export const StageCard = ({
             </dl>
             <hr />
             <p className="workshop-cards__text">{description}</p>
-            <Link
-                to="/"
-                className={`workshop-cards__btn btn ${
-                    disabled ? "is-disabled" : ""
-                }`}
-            >
+            <Link to="/" className="workshop-cards__btn btn">
                 Join
             </Link>
         </div>

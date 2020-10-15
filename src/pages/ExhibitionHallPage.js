@@ -12,24 +12,25 @@ import image8 from "../assets/img/exhibition-hall/img@2x.png";
 
 export const ExhibitionHallPage = () => (
     <article className="exhibition-hall center">
-        <div className="exhibition-hall__body">
-            <h1 className="h1">Experience is more important than money</h1>
+        <div className="auction__body">
+            <h1 className="h1">
+                Experience <br />
+                is more important than money.
+            </h1>
 
-            <ol>
-                <li>
-                    If you just want to display your art and let people enjoy, here
-                    is the place.
-                </li>
+            <p>
+                We believe that the artists should always be rewarded. That is why
+                when you create an art piece, you will earn money every time it is
+                sold via the auction: we allocate 50% of the transaction fees to the
+                original creators of sold NFTs.
+            </p>
 
-                <li>
-                    You can display your art, and write your story and the thoughts
-                    of your arts.
-                </li>
+            <p>
+                Additionally, creators can share their personal story and give more
+                background on their work, getting more people to talk about it.
+            </p>
 
-                <li>You can also choose to store it on a decentralized network.</li>
-            </ol>
-
-            <div className="exhibition-hall__btn">
+            <div className="auction__btn">
                 <Link to="/" className="">
                     Coming Soon!
                 </Link>

@@ -6,17 +6,19 @@ import {getContract, useActiveWeb3React} from "../../web3";
 
 import {formatAmount} from "../../utils/format";
 
-const {toWei, fromWei} = Web3.utils
 export const PoolCard = ({pool}) => {
 
     const {total, time, apy} = useBOTInfo()
-    const {leftTime} = useLeftTime()
-    const {account, active, library, chainId} = useActiveWeb3React()
+    const {leftTime, setTime} = useLeftTime()
     const [show, setShow] = useState(false)
 
     useEffect(()=>{
         setShow(true)
     },[])
+
+    useEffect(()=>{
+        setTime(time)
+    },[time])
 
     return (
         <Grow in={show} timeout={1500}>
@@ -69,7 +71,7 @@ export const PoolCard = ({pool}) => {
                                     Time left
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-black">{leftTime? `${leftTime.days}d ${leftTime.days}h ${leftTime.days}m`: 'data requesting....'}</b>
+                                    <b className="card-pool__dl-black">{leftTime? `${leftTime.days}d ${leftTime.hours}h ${leftTime.minutes}m`: 'data requesting....'}</b>
                                 </dd>
                             </div>
                         </dl>
