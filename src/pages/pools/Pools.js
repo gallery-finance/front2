@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk'
 import {PoolCard} from '../../components/pool/PoolCard'
-import cover_1 from '../../assets/img/card-pool/1.jpg'
-import cover_2 from '../../assets/img/card-pool/2.jpg'
-import cover_3 from '../../assets/img/card-pool/3.jpg'
-import cover_4 from '../../assets/img/card-pool/4.jpg'
-import cover_5 from '../../assets/img/card-pool/5.jpg'
-import cover_6 from '../../assets/img/card-pool/6.jpg'
+import cover_1 from '../../assets/img/card-pool/1.png'
+import cover_2 from '../../assets/img/card-pool/2.png'
+import cover_3 from '../../assets/img/card-pool/3.png'
+import cover_4 from '../../assets/img/card-pool/4.png'
+import cover_5 from '../../assets/img/card-pool/5.png'
+import cover_6 from '../../assets/img/card-pool/6.png'
 
 
 const poolList = [
