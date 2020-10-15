@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 
 import { HANDLE_SHOW_REWARD_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
+import {getPercent} from "../../utils/time";
+import {formatAmount} from "../../utils/format";
 
-export const ClaimRewardModal = () => {
+export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -18,18 +20,18 @@ export const ClaimRewardModal = () => {
                                 <dt className="claim-reward__dl-dt">
                                     Your reward pool:
                                 </dt>
-                                <dd className="claim-reward__dl-dd">1200 GLF</dd>
+                                <dd className="claim-reward__dl-dd">{rewards && formatAmount(rewards)} GLF</dd>
                             </div>
                             <div className="claim-reward__dl-row">
                                 <dt className="claim-reward__dl-dt">
                                     Current staking time:
                                 </dt>
-                                <dd className="claim-reward__dl-dd">23 hours</dd>
+                                <dd className="claim-reward__dl-dd">{stakedTime && stakedTime} hours</dd>
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            You will get 600 GLF (50% of your GLF) if you will claim
-                            your reward now
+                            {`You will get 600 GLF (${getPercent()} of your GLF) if you will claim
+                            your reward now`}
                         </p>
                         <div className="claim-reward__columns">
                             <p className="claim-reward__columns-caption">
@@ -120,16 +122,11 @@ export const ClaimRewardModal = () => {
                             <button
                                 className="btn btn--outline btn--medium"
                                 type="button"
-                                onClick={() => {
-                                    dispatch({
-                                        type: HANDLE_SHOW_REWARD_MODAL,
-                                        showRewardModal: false
-                                    });
-                                }}
+                                onClick={onCancel}
                             >
                                 Cancel
                             </button>
-                            <button className="btn btn--medium">Confirm</button>
+                            <button type="button" className="btn btn--medium" onClick={onConfirm}>Confirm</button>
                         </div>
                     </div>
                 </form>

@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React, {useContext} from 'react'
+import {useActiveWeb3React} from "../../web3";
+import {formatAddress, formatAmount} from "../../utils/format";
+import {mainContext} from '../../reducer'
+import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
 import { Link, NavLink } from "react-router-dom";
 
-import { useActiveWeb3React } from "../../web3";
-import { formatAddress, formatAmount } from "../../utils/format";
-import { mainContext } from "../../reducer";
-import { HANDLE_SHOW_CONNECT_MODAL } from "../../const";
-import { Logoicon } from "../../icons/Logoicon";
+import { Logoicon } from "../../icons";
+
 
 export const Header = () => {
-    const { dispatch, state } = useContext(mainContext);
     const { active, account, library, chainId } = useActiveWeb3React();
+    const {dispatch} = useContext(mainContext);
 
     return (
         <header className="header">
@@ -87,6 +88,7 @@ export const Header = () => {
                                         <span onClick={() => {}}>Unlock Wallet</span>
                                     </button>
                                 )}
+
 
                                 {active && (
                                     <div className="container open">

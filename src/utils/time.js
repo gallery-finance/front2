@@ -17,3 +17,29 @@ export const getLeftTime = (time)=>{
         return null
     }
 }
+
+export const getPercent = (time) =>{
+    if(0 <time < 24){
+        return '50%'
+    }else if(24 <time < 48){
+        return '40%'
+    }else if(48 <time < 72){
+        return '30%'
+    }else if(72 <time < 96){
+        return '20%'
+    }else if(96 <time < 120){
+        return '15%'
+    }else if(120 <time < 144){
+        return '10%'
+    }else if(144 <time < 168){
+        return '8%'
+    }else if(168 <time < 192){
+        return '6%'
+    }else if(192 <time < 216){
+        return '4%'
+    }else if(216 <time < 240){
+        return '2%'
+    }else {
+        return '0%'
+    }
+}

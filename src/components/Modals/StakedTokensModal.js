@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { HANDLE_SHOW_STAKED_TOKENS_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 
-export const StakedTokensModal = () => {
+export const StakedTokensModal = ({onOk, amount, symbol}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -21,33 +21,22 @@ export const StakedTokensModal = () => {
                             <p className="color-gray">
                                 You have successfully staked
                             </p>
-                            100.222345 GLF
+                            {`${amount} ${symbol}`}
                         </div>
                         <button
                             type="button"
                             className="transction-submitted__btn btn"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_STAKED_TOKENS_MODAL,
-                                    showStakedTokensModal: false
-                                });
-                            }}
-                        >
+                            onClick={onOk}>
                             Ok
                         </button>
                         <button
                             type="button"
                             className="form-app__close-btn button"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_STAKED_TOKENS_MODAL,
-                                    showStakedTokensModal: false
-                                });
-                            }}
+
                             aria-label="Close"
                         >
                             <svg width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"></path>
+                                <path d="M14.5 10l7.39-7L24 5l-7.39 7L24 19l-2.11 2-7.39-7-7.39 7L5 19l7.39-7L5 5l2.11-2 7.39 7z"/>
                             </svg>
                         </button>
                     </div>
