@@ -23,6 +23,7 @@ import {AboutPage} from "./pages/AboutPage";
 import {WorkshopPage} from "./pages/WorkshopPage";
 import {AuctionPage} from "./pages/AuctionPage";
 import {ExhibitionHallPage} from "./pages/ExhibitionHallPage";
+import {WorkshopVoterPage} from "./pages/Workshop/WorkshopVoterPage";
 import {Footer} from "./components/Footer";
 
 
@@ -73,13 +74,15 @@ function App() {
                                 <StakingDONUT/>
                             </Route>
 
-                            <Route path='/about' component={AboutPage} />
+                            <Route exact path='/about' component={AboutPage} />
 
-                            <Route path='/workshop' component={WorkshopPage} />
+                            <Route exact path='/workshop' component={WorkshopPage} />
 
-                            <Route path='/auction' component={AuctionPage} />
+                            <Route exact path='/auction' component={AuctionPage} />
 
-                            <Route path='/exhibition-hall' component={ExhibitionHallPage} />
+                            <Route exact path='/exhibition-hall' component={ExhibitionHallPage} />
+
+                            <Route exact path='/workshop/voter' component={WorkshopVoterPage} />
 
                         </Switch>
                         <Footer/>
