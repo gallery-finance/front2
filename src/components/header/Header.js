@@ -8,8 +8,8 @@ import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
 export const Header = () => {
 
     const history = useHistory();
-    const {dispatch, state} = useContext(mainContext);
-    const {active, account, library, chainId} = useActiveWeb3React();
+    const {dispatch} = useContext(mainContext);
+    const {active, account} = useActiveWeb3React();
 
     return (
         <header className="header">
@@ -33,12 +33,20 @@ export const Header = () => {
                                 <li className="menu__item">
                                     <a className="menu__link">About</a>
                                 </li>
-                                <li className="menu__item">Workshop</li>
-                                <li className="menu__item">Auction</li>
-                                <li className="menu__item">Exhibition hall</li>
-                                <li onClick={()=>{
-                                    history.push('/pools')
-                                }} className="menu__item">Pools</li>
+                                <li className="menu__item">
+                                    <a className="menu__link">Workshop</a>
+                                </li>
+                                <li className="menu__item">
+                                    <a className="menu__link">Auction</a>
+                                </li>
+                                <li className="menu__item">
+                                    <a className="menu__link">Exhibition hall</a>
+                                </li>
+                                <li className="menu__item">
+                                    <a onClick={()=>{
+                                        history.push('/pools')
+                                    }} className="menu__link">Pools</a>
+                                </li>
                             </ul>
                         </nav>
 
@@ -52,7 +60,9 @@ export const Header = () => {
                                     }}>Unlock wallet</span>
                                 </button>}
 
-                                {active && <div className="container open">
+                                {active && <div className="container open" onClick={()=>{
+                                    dispatch({type: HANDLE_SHOW_CONNECT_MODAL, showConnectModal: true});
+                                }}>
                                     <div className="balance ">
                                         <p>{formatAmount('1564564')}</p>
                                     </div>

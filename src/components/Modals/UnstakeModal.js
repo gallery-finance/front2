@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 import { GLFIcon, PineappleLightIcon } from "../../icons";
 import { HANDLE_SHOW_UNSTAKE_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
+import {formatAmount} from "../../utils/format";
 
-export const UnstakeModal = ({onChange, onConfirm, onCancel}) => {
+export const UnstakeModal = ({onChange, onConfirm, onCancel, balance, symbol}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -85,7 +86,7 @@ export const UnstakeModal = ({onChange, onConfirm, onCancel}) => {
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            1021.545848748454484848484 GLF-ETH <br />
+                            {(balance && symbol) &&`${formatAmount(balance)} GLF-${symbol}`} <br />
                             GalleryFinanceSwap LP Token
                         </p>
 

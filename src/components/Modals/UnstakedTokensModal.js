@@ -31,12 +31,7 @@ export const UnstakedTokensModal = ({onOk, amount, symbol}) => {
                         <button
                             type="button"
                             className="transction-submitted__btn btn"
-                            onClick={() => {
-                                dispatch({
-                                    type: HANDLE_SHOW_UNSTAKED_TOKENS_MODAL,
-                                    showUnstakedTokensModal: false
-                                });
-                            }}
+                            onClick={onOk}
                         >
                             Ok
                         </button>

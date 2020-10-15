@@ -27,7 +27,7 @@ export const StakingBOT = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, total} = useBOTStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useBOTStaking()
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)
@@ -191,6 +191,7 @@ export const StakingBOT = () => {
     };
 
     const onClaim = async () => {
+        setClaiming(false)
         const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
         console.log('starting StakingBOT BOT')
         dispatch({
@@ -427,7 +428,8 @@ export const StakingBOT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <UnstakeModal
-                            balance={balance}
+                            symbol={'BOT'}
+                            balance={stakedAmount}
                             onChange={(e) => {
                                 setAmount(e.target.value)
                             }}
@@ -443,6 +445,8 @@ export const StakingBOT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <ClaimRewardModal
+                            rewards={rewards}
+                            stakedTime={stakedTime}
                             onConfirm={onClaim}
                             onCancel={() => {
                                 setClaiming(false)
