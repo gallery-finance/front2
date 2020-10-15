@@ -1,13 +1,23 @@
 import React, {useEffect, useState} from 'react'
 import Grow from '@material-ui/core/Grow';
-import {useBOTInfo, useLeftTime} from "./Hooks";
+import {
+    useBOTInfo,
+    useDEGOInfo,
+    useDONUTInfo,
+    useETHInfo,
+    useLeftTime,
+    useMEMEInfo, usePoolCard,
+    useUSDTInfo,
+    useUSDTStaking
+} from "./Hooks";
 import { Link } from "react-router-dom";
 import {formatAmount} from "../../utils/format";
 import {REQUESTING_DATA} from "../../const";
 
 export const PoolCard = ({pool}) => {
 
-    const {total, time, apy} = useBOTInfo()
+    const {total, time, apy} = usePoolCard(pool.type)
+
     const {leftTime, setTime} = useLeftTime()
     const [show, setShow] = useState(false)
 
