@@ -112,13 +112,13 @@ export const WalletConnect = () => {
                                 <input
                                     type="radio"
                                     name="modal-form-recieve"
-                                    class="visuallyhidden"
+                                    className="visuallyhidden"
                                     value="MetaMask"
                                     value="WalletConnect" checked={connectedName === 'MetaMask'}/>
 
                                 <span className="form-recieve__image">
                                 <img src={MetaMask}
-                                     srcset="../../assets/img/modal/MetaMask@2x.png 2x" alt=""/>
+                                     srcSet="../../assets/img/modal/MetaMask@2x.png 2x" alt=""/>
                             </span>
 
                                 {connectedName === 'MetaMask' ? (
@@ -134,6 +134,7 @@ export const WalletConnect = () => {
 
                             </label>
 
+                            <hr />
 
                             <label className="form-recieve__input" onClick={()=>{
                                 onConnect(currentConnector, 'WalletConnect')
@@ -142,7 +143,7 @@ export const WalletConnect = () => {
                                 <input type="radio" name="modal-form-recieve" className="visuallyhidden"
                                        value="WalletConnect" checked={connectedName === 'WalletConnect'}/>
 
-                                <span class="form-recieve__image">
+                                <span className="form-recieve__image">
 
                                     <img src={walletConnectIcon} alt=""/>
 
@@ -161,6 +162,7 @@ export const WalletConnect = () => {
 
                             </label>
 
+                            <hr />
 
                             <label className="form-recieve__input" onClick={()=>{
                                 onConnect(currentConnector, 'Ledger')

@@ -22,7 +22,15 @@
 		width: 1440px;
 		padding: 0 30px;
 
-	}
+    }
+    
+    &.menu-show {
+        border-bottom: transparent;
+        
+        .header__menu {
+            display: block;
+        }
+    }
 
 	&__box {
 
@@ -94,6 +102,12 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+
+            @media #{$mdWidth} {
+
+                width: auto;
+    
+            }
         }
 
 	}
