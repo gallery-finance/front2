@@ -74,7 +74,7 @@ export const WorkshopPage = () => {
                         stageText="Stage One"
                         title="Vote for the 10 most-wanted figures"
                         timeIn="10/22/2020 -10/25/2020"
-                        status="Ongoing"
+                        status="preparation"
                         description={
                             <>
                                 You can propose a figure or you can vote for a figure
@@ -82,7 +82,7 @@ export const WorkshopPage = () => {
                                 votes will be selected to next stage. You need to
                                 stake your GLF tokens for votes. Voters for the final
                                 figures will together share 4000 GLF token rewards.{" "}
-                                <Link to="/">Read details</Link>
+                                <a target="_blank" href="https://gallery-finance.medium.com/top-10-most-wanted-the-first-nft-workshop-on-gallery-finance-53751b7f4f8e">Read details</a>
                             </>
                         }
                     />
@@ -91,7 +91,7 @@ export const WorkshopPage = () => {
                         stageText="Stage Two"
                         title="Vote for the best artwork"
                         timeIn="10/26/2020-10/30/2020"
-                        status="Ongoing"
+                        status="preparation"
                         description={
                             <>
                                 Once the top-10 figures are selected, artists get to
@@ -100,7 +100,7 @@ export const WorkshopPage = () => {
                                 vote is over, the top-3 submissions will move onto
                                 the next stage; their authors and voters will share
                                 10,000 GLF tokens as a reward.{" "}
-                                <Link to="/">Read details</Link>
+                                <a target="_blank" href="https://gallery-finance.medium.com/top-10-most-wanted-the-first-nft-workshop-on-gallery-finance-53751b7f4f8e" to="/">Read details</a>
                             </>
                         }
                     />
@@ -109,7 +109,7 @@ export const WorkshopPage = () => {
                         stageText="Stage Three"
                         title="Mine the resulting NFTs"
                         timeIn="10/31/2020-11/20/2020"
-                        status="Ongoing"
+                        status="preparation"
                         description="The top-3 artworks are turned into NFTs, and GLF holders proceed to mine them. The holders can use their reward points (obtained through staking) to redeem the NFT artworks and get them transferred to their wallets. The obtained NFTs can be held for collection purposes or sold via the auction."
                     />
                 </div>

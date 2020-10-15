@@ -31,9 +31,9 @@ export const StageCard = ({
             </dl>
             <hr />
             <p className="workshop-cards__text">{description}</p>
-            <Link to="/" className="workshop-cards__btn btn">
+            <a style={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}} disabled className="workshop-cards__btn btn">
                 Join
-            </Link>
+            </a>
         </div>
     );
 };

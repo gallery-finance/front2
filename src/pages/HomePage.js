@@ -145,9 +145,9 @@ export const HomePage = () => (
                                 through liquidity mining.
                             </p>
                             <div className="home-cards__btn">
-                                <button type="button" className="btn btn--medium">
+                                <Link to='/pools' type="button" className="btn btn--medium">
                                     Earn free tokens
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="home-cards__item home-cards__first-workshop">

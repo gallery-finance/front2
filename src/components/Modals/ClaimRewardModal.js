@@ -1,7 +1,4 @@
 import React, {useContext, useState} from "react";
-
-import { HANDLE_SHOW_REWARD_MODAL } from "../../const";
-import { mainContext } from "../../reducer";
 import {getPercent} from "../../utils/time";
 import {formatAmount} from "../../utils/format";
 import BigNumber from "bignumber.js";
@@ -32,7 +29,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            {`You will get ${rewards && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent()) / 100)).toString()))} GLF (${getPercent()} % of your GLF) if you will claim
+                            {`You will get ${rewards && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent(stakedTime)) / 100)).toString()))} GLF (${getPercent()} % of your GLF) if you will claim
                             your reward now`}
                         </p>
                         <div className="claim-reward__columns">

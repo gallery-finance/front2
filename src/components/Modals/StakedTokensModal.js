@@ -22,7 +22,7 @@ export const StakedTokensModal = ({onOk, amount, symbol}) => {
                             <p className="color-gray">
                                 You have successfully staked
                             </p>
-                            {`${amount && formatAmount(amount)} ${symbol}`}
+                            {`${amount && amount} ${symbol}`}
                         </div>
                         <button
                             type="button"
