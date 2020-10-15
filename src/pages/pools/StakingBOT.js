@@ -24,6 +24,7 @@ import {useBOTStaking} from "../../components/pool/Hooks";
 import {BackButton} from "../../components/BackButton";
 import {formatAmount} from "../../utils/format";
 import {BOTLightIcon, BOTRedIcon, GLFIcon} from "../../icons";
+import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -215,6 +216,7 @@ export const StakingBOT = () => {
                 })
                 .on('receipt', (_, receipt) => {
                     console.log('BOT staking success')
+                    setClaimed(true)
                     dispatch({
                         type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
                         showWaitingWalletConfirmModal: waitingForInit
@@ -466,6 +468,19 @@ export const StakingBOT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <FailedTransactionModal/>
+                    </div>
+                </div>
+            )}
+
+            {claimed && (
+                <div className="modal-show">
+                    <div className="wrapper">
+                        <ClaimedTokensModal
+                            amount={rewards}
+                            symbol={'GLF'}
+                            onOk={() => {
+                                setClaimed(false)
+                            }}/>
                     </div>
                 </div>
             )}

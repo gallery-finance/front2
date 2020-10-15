@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 
 import { HANDLE_SHOW_REWARD_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
@@ -7,7 +7,8 @@ import {formatAmount} from "../../utils/format";
 import BigNumber from "bignumber.js";
 
 export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => {
-    const { dispatch } = useContext(mainContext);
+
+    const [checked, setChecked] = useState(true)
 
     return (
         <div className="modal">
@@ -31,7 +32,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            {`You will get ${(new BigNumber(rewards).multipliedBy((100-getPercent()) / 100))} GLF (${getPercent()} % of your GLF) if you will claim
+                            {`You will get ${rewards && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent()) / 100)).toString()))} GLF (${getPercent()} % of your GLF) if you will claim
                             your reward now`}
                         </p>
                         <div className="claim-reward__columns">
@@ -111,6 +112,10 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                         </div>
                         <label className="checkbox">
                             <input
+                                checked={checked}
+                                onChange={()=>{
+                                    setChecked(!checked)
+                                }}
                                 type="checkbox"
                                 className="checkbox__input visuallyhidden"
                                 required="required"
@@ -127,7 +132,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             >
                                 Cancel
                             </button>
-                            <button type="button" className="btn btn--medium" onClick={onConfirm}>Confirm</button>
+                            <button disabled={!checked} style={{background:checked? '': 'rgba(196, 196, 196, 0.2)'}} type="button" className="btn btn--medium" onClick={onConfirm}>Confirm</button>
                         </div>
                     </div>
                 </form>

@@ -8,5 +8,6 @@ export const formatAddress = (address)=>{
 }
 
 export const formatAmount = (amount)=>{
+    console.log('formatAmount',amount)
     return new BigNumber(new BigNumber(Web3.utils.fromWei(amount)).toFixed(6)).toNumber()
 }
