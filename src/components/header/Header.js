@@ -3,7 +3,7 @@ import {useActiveWeb3React} from "../../web3";
 import {formatAddress, formatAmount} from "../../utils/format";
 import {mainContext} from '../../reducer'
 import {HANDLE_SHOW_CONNECT_MODAL} from "../../const";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { Logoicon } from "../../icons";
 
@@ -12,8 +12,10 @@ export const Header = () => {
     const { active, account, library, chainId } = useActiveWeb3React();
     const {dispatch} = useContext(mainContext);
 
+    const location = useLocation();
+
     return (
-        <header className="header">
+        <header className="header" style={location.pathname === "/" ? {borderBottom: "transparent"} : {}}>
             <div className="center">
                 <div className="header__box">
                     <Link to="/" className="header__logo">
