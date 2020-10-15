@@ -1,3 +1,4 @@
+export * from "./Logoicon";
 export * from "./GLFIcon";
 export * from "./ETHIcon";
 export * from "./UniswapLightIcon";
