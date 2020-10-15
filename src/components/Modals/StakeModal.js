@@ -5,7 +5,7 @@ import { HANDLE_SHOW_STAKE_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 import {formatAmount} from "../../utils/format";
 
-export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
+export const StakeModal = ({amount, onConfirm, onCancel, onChange, balance, icon, tokenName, symbol, onMax}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -17,7 +17,7 @@ export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
 
                         <div className="deposit__logo">
                             <GLFIcon width={43} height={43} />
-                            <BOTLightIcon width={43} height={43} />
+                            {icon}
                             {/* <svg width="73" height="46" viewBox="0 0 73 46">
                                 <circle
                                     cx="53"
@@ -68,16 +68,16 @@ export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
                         </div>
 
                         <p className="form-app__label align-center">
-                            GLF-ETH GalleryFinanceSwap LP Token
+                            {tokenName}
                         </p>
 
                         <div className="deposit__inputbox form-app__inputbox">
                             <div className="form-app__inputbox-control">
                                 <div className="form-app__inputbox-input">
-                                    <input className="input" placeholder="0.0000" onChange={onChange}/>
+                                    <input value={amount} className="input" placeholder="0.0000" onChange={onChange}/>
                                 </div>
 
-                                <div className="form-app__inputbox-up">
+                                <div className="form-app__inputbox-up" onClick={onMax}>
                                     <div className="form-app__inputbox-up-pref">
                                         Max
                                     </div>
@@ -86,7 +86,7 @@ export const StakeModal = ({onConfirm, onCancel, onChange, balance}) => {
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            {balance && formatAmount(balance)} GLF-BOT <br />
+                            {balance && formatAmount(balance)} {symbol} <br />
                             GalleryFinanceSwap LP Token
                         </p>
 

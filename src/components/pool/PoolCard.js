@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import Web3 from 'web3'
 import Grow from '@material-ui/core/Grow';
 import {useBOTInfo, useLeftTime} from "./Hooks";
-import {getContract, useActiveWeb3React} from "../../web3";
-
+import { Link } from "react-router-dom";
 import {formatAmount} from "../../utils/format";
+import {REQUESTING_DATA} from "../../const";
 
 export const PoolCard = ({pool}) => {
 
@@ -30,13 +29,13 @@ export const PoolCard = ({pool}) => {
                         </picture>
                     </a>
                     <h2 className="card-pool__title h3">{pool.label}</h2>
-                    <a href={pool.link} className="card-pool__stake">Stake
+                    <Link to={pool.link} className="card-pool__stake">Stake
                         <b>{pool.pair}</b>
                         <svg width="20" height="21" viewBox="0 0 20 21">
                             <path d="M13.48 9.67L9 5.2l1.18-1.18 6.48 6.48-6.48 6.48L9 15.8l4.47-4.47H3.33V9.67h10.15z"
                                   stroke-width=".8"/>
                         </svg>
-                    </a>
+                    </Link>
                     <p className="card-pool__earn">
                         Earn GLF
                     </p>
@@ -47,7 +46,7 @@ export const PoolCard = ({pool}) => {
                                     Staked
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-black">{total? formatAmount(total) : 'data requesting....'}</b>
+                                    <b className="card-pool__dl-black">{total? formatAmount(total) : REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
@@ -55,7 +54,7 @@ export const PoolCard = ({pool}) => {
                                     Pool total
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-blue">{total? formatAmount(total) : 'data requesting....'}</b>
+                                    <b className="card-pool__dl-blue">{total? formatAmount(total) : REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
@@ -63,7 +62,7 @@ export const PoolCard = ({pool}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{apy? formatAmount(apy) : 'data requesting....'}</b>
+                                    <b className="card-pool__dl-green">{apy? formatAmount(apy) : REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
@@ -71,7 +70,7 @@ export const PoolCard = ({pool}) => {
                                     Time left
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-black">{leftTime? `${leftTime.days}d ${leftTime.hours}h ${leftTime.minutes}m`: 'data requesting....'}</b>
+                                    <b className="card-pool__dl-black">{leftTime? `${leftTime.days}d ${leftTime.hours}h ${leftTime.minutes}m`: REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                         </dl>

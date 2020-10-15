@@ -5,7 +5,7 @@ import { HANDLE_SHOW_UNSTAKE_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 import {formatAmount} from "../../utils/format";
 
-export const UnstakeModal = ({onChange, onConfirm, onCancel, balance, symbol}) => {
+export const UnstakeModal = ({amount, tokenName, onChange, onConfirm, onCancel, onMax, balance, symbol, icon}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -17,7 +17,7 @@ export const UnstakeModal = ({onChange, onConfirm, onCancel, balance, symbol}) =
 
                         <div className="deposit__logo">
                             <GLFIcon width={43} height={43} />
-                            <PineappleLightIcon width={43} height={43} />
+                            {icon}
                             {/* <svg width="73" height="46" viewBox="0 0 73 46">
                                 <circle
                                     cx="53"
@@ -68,16 +68,16 @@ export const UnstakeModal = ({onChange, onConfirm, onCancel, balance, symbol}) =
                         </div>
 
                         <p className="form-app__label align-center">
-                            GLF-ETH GalleryFinanceSwap LP Token
+                            {tokenName}
                         </p>
 
                         <div className="deposit__inputbox form-app__inputbox">
                             <div className="form-app__inputbox-control">
                                 <div className="form-app__inputbox-input">
-                                    <input onChange={onChange} className="input" placeholder="0.0000" />
+                                    <input value={amount} onChange={onChange} className="input" placeholder="0.0000" />
                                 </div>
 
-                                <div className="form-app__inputbox-up">
+                                <div className="form-app__inputbox-up" onClick={onMax}>
                                     <div className="form-app__inputbox-up-pref">
                                         Max
                                     </div>
@@ -86,8 +86,8 @@ export const UnstakeModal = ({onChange, onConfirm, onCancel, balance, symbol}) =
                         </div>
 
                         <p className="form-app__inputbox-after-text">
-                            {(balance && symbol) &&`${formatAmount(balance)} GLF-${symbol}`} <br />
-                            GalleryFinanceSwap LP Token
+                            {(balance && symbol) &&`${formatAmount(balance)} ${symbol}`} <br />
+
                         </p>
 
                         <div className="form-app__submit form-app__submit--row">

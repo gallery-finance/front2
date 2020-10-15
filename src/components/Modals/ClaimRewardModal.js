@@ -4,6 +4,7 @@ import { HANDLE_SHOW_REWARD_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 import {getPercent} from "../../utils/time";
 import {formatAmount} from "../../utils/format";
+import BigNumber from "bignumber.js";
 
 export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => {
     const { dispatch } = useContext(mainContext);
@@ -30,7 +31,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            {`You will get 600 GLF (${getPercent()} of your GLF) if you will claim
+                            {`You will get ${(new BigNumber(rewards).multipliedBy((100-getPercent()) / 100))} GLF (${getPercent()} % of your GLF) if you will claim
                             your reward now`}
                         </p>
                         <div className="claim-reward__columns">
@@ -102,7 +103,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                                 </div>
                                 <div className="claim-reward__columns-row">
                                     <dt className="claim-reward__columns-dt">
-                                        240-... hours:
+                                        240-∞ hours:
                                     </dt>
                                     <dd className="claim-reward__columns-dd">0%</dd>
                                 </div>

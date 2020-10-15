@@ -9,7 +9,7 @@ import { Logoicon } from "../../icons";
 
 
 export const Header = () => {
-    const { active, account, library, chainId } = useActiveWeb3React();
+    const { active, account } = useActiveWeb3React();
     const {dispatch} = useContext(mainContext);
 
     return (
