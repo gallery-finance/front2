@@ -41,31 +41,31 @@ function App() {
                                 <Home/>
                             </Route>
 
-                            <Route exact path='/pools'>
+                            <Route path='/pools'>
                                 <Pools/>
                             </Route>
 
-                            <Route exact path='/staking-eth'>
+                            <Route path='/staking-eth'>
                                 <StakingETH/>
                             </Route>
 
-                            <Route exact path='/staking-usdt'>
+                            <Route path='/staking-usdt'>
                                 <StakingUSDT/>
                             </Route>
 
-                            <Route exact path='/staking-bot'>
+                            <Route path='/staking-bot'>
                                 <StakingBOT/>
                             </Route>
 
-                            <Route exact path='/staking-meme'>
+                            <Route path='/staking-meme'>
                                 <StakingMEME/>
                             </Route>
 
-                            <Route exact path='/staking-dego'>
+                            <Route path='/staking-dego'>
                                 <StakingDEGO/>
                             </Route>
 
-                            <Route exact path='/staking-donut'>
+                            <Route path='/staking-donut'>
                                 <StakingDONUT/>
                             </Route>
 
