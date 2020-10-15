@@ -37,11 +37,12 @@ function App() {
                     <Router>
                         <Header/>
                         <Switch>
-                            <Route path='/index'>
+                            <Route exact path='/index'>
                                 <Home/>
                             </Route>
 
-                            <Route path='/pools' component={Pools}>
+                            <Route path='/pools'>
+                                <Pools/>
                             </Route>
 
                             <Route path='/staking-eth'>
