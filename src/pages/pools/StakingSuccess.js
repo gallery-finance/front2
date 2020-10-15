@@ -1,8 +1,11 @@
 import React from 'react'
+import {BackButton} from "../../components/BackButton";
 
 export const StakingSuccess = ()=>{
     return (
         <article className="center">
+
+            <BackButton />
 
             <form className="form-app" action="/">
 

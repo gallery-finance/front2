@@ -1,8 +1,11 @@
 import React from 'react'
+import {BackButton} from "../../components/BackButton";
 
 export const StakingDEGO = () => {
     return (
         <article className="center">
+
+            <BackButton />
 
             <header className="head-page">
 
