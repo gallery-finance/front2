@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk'
 import {PoolCard} from '../../components/pool/PoolCard'
 import cover_1 from '../../assets/img/card-pool/1.jpg'
 import cover_2 from '../../assets/img/card-pool/2.jpg'
@@ -9,15 +10,37 @@ import cover_6 from '../../assets/img/card-pool/6.jpg'
 
 
 const poolList = [
-    {label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`},
-    {label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`},
-    {label: 'Gallery Santi',cover: cover_3, pair: `YFI`},
-    {label: 'Gallery Picasso',cover: cover_4, pair: `MEME`},
-    {label: 'Gallery Dali',cover: cover_5, pair: `STAKE`},
-    {label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`}
+    {label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`, link: 'staking-eth'},
+    {label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`, link: 'staking-usdt'},
+    {label: 'Gallery Santi',cover: cover_3, pair: `DEGO`, link: 'staking-dego'},
+    {label: 'Gallery Picasso',cover: cover_4, pair: `MEME`, link: 'staking-meme'},
+    {label: 'Gallery Dali',cover: cover_5, pair: `DONUT`, link: 'staking-donut'},
+    {label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`, link: 'staking-bot'}
 ]
 
 export const Pools = () => {
+
+    useEffect(()=>{
+        async function getPrice() {
+            console.log('starting to get price')
+            const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
+            const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+
+// note that you may want/need to handle this async code differently,
+// for example if top-level await is not an option
+            const USDCWETHPair = await Fetcher.fetchPairData(USDC, WETH[ChainId.MAINNET])
+            const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC)
+
+            const route = new Route([USDCWETHPair, DAIUSDCPair], WETH[ChainId.MAINNET])
+
+            console.log(route.midPrice.toSignificant(6)) // 202.081
+            console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
+        }
+
+        getPrice()
+
+    },[])
+
     return (
         <div>
             <div/>

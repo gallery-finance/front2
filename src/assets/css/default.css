@@ -1,0 +1,264 @@
+* {
+
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+html {
+
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	scroll-behavior: smooth;
+
+	&.scroll-behavior-off {
+
+		scroll-behavior: auto;
+
+	}
+
+}
+
+body {
+
+	color: var(--color);
+	min-width: 320px;
+	font-size: 16px;
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+	-webkit-text-size-adjust: none;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: scrollbar;
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	overflow-y: scroll;
+	position: relative;
+	background-color: var(--bg);
+
+}
+
+a {
+
+	color: var(--color);
+	text-decoration: none;
+	transition: var(--transitionDefault);
+
+	&:hover {
+
+		cursor: pointer;
+		text-decoration: none;
+
+	}
+
+}
+
+::selection {
+
+	color: var(--bg);
+	background-color: var(--yellow);
+
+}
+
+img {
+
+	border: 0;
+	display: block;
+	position: relative;
+
+}
+
+li {
+
+	list-style: none;
+	position: relative;
+
+}
+
+svg {
+
+	display: block;
+	fill: var(--color);
+	position: relative;
+	transition: var(--transitionDefault);
+
+}
+
+table {
+
+	border: 0;
+	border-collapse: collapse;
+
+}
+
+hr {
+
+	height: 1px;
+	border: 0;
+	background-color: #fff;
+	opacity: .1;
+
+}
+
+.align-center {
+
+	text-align: center;
+
+}
+
+.link {
+
+	color: var(--link);
+	text-decoration: underline;
+
+	@media ($desktop) {
+
+		&:hover {
+
+			text-decoration: none;
+
+		}
+
+	}
+
+}
+
+.opacity-60 {
+
+	opacity: .6;
+
+}
+
+.fz-14 {
+
+	font-size: 14px;
+
+}
+
+.fz-20 {
+
+	font-size: 20px;
+
+}
+
+.color-gray {
+
+	color: #808080;
+
+}
+
+/*
+-----------------------------------------------------------------------------*/
+.notsel {
+
+	user-select: none;
+
+}
+
+.h1 {
+
+	font-size: 48px;
+	line-height: 60px;
+	font-weight: 400;
+
+	@media ($mdWidth) {
+
+		font-size: 36px;
+		line-height: 48px;
+
+	};
+
+	@media ($smWidth) {
+
+		font-size: 24px;
+		line-height: 36px;
+
+	}
+
+
+}
+
+.h2 {
+
+	font-size: 36px;
+	line-height: 48px;
+	font-weight: 400;
+
+}
+
+.h3 {
+
+	font-size: 24px;
+	font-weight: 600;
+
+	@media ($smWidth) {
+
+		font-size: 20px;
+
+	}
+
+}
+
+.h4 {
+
+	font-size: 20px;
+	font-weight: 700;
+
+}
+
+
+main,
+header,
+footer,
+section,
+article,
+aside,
+time,
+nav {
+
+	display: block;
+	position: relative;
+
+}
+
+.wrapper,
+.main {
+
+	flex-shrink: 0;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+
+}
+
+/* hidden
+-----------------------------------------------------------------------------*/
+.hide {
+
+	display: none !important;
+
+}
+
+.visuallyhidden {
+
+	position: absolute !important;
+
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	border: 0 !important;
+	padding: 0 !important;
+
+	clip: rect(0 0 0 0) !important;
+	overflow: hidden !important;
+
+}
+
+a[href^="tel"],
+.white-space-nowrap {
+
+	white-space: nowrap;
+
+}
