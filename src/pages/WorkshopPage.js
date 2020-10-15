@@ -30,7 +30,7 @@ export const WorkshopPage = () => {
                         <dt className="workshop-info__dl-dt">Date:</dt>
 
                         <dd className="workshop-info__dl-dd">
-                            00/00/2020 - 00/00/2020
+                            10/22/2020-11/20/2020
                         </dd>
                     </div>
 
@@ -73,7 +73,7 @@ export const WorkshopPage = () => {
                         number={1}
                         stageText="Stage One"
                         title="Vote for the 10 most-wanted figures"
-                        timeIn="00/00/20 - 00/00/20"
+                        timeIn="10/22/2020 -10/25/2020"
                         status="Ongoing"
                         description={
                             <>
@@ -90,7 +90,7 @@ export const WorkshopPage = () => {
                         number={2}
                         stageText="Stage Two"
                         title="Vote for the best artwork"
-                        timeIn="00/00/20 - 00/00/20"
+                        timeIn="10/26/2020-10/30/2020"
                         status="Ongoing"
                         description={
                             <>
@@ -108,7 +108,7 @@ export const WorkshopPage = () => {
                         number={3}
                         stageText="Stage Three"
                         title="Mine the resulting NFTs"
-                        timeIn="00/00/20 - 00/00/20"
+                        timeIn="10/31/2020-11/20/2020"
                         status="Ongoing"
                         description="The top-3 artworks are turned into NFTs, and GLF holders proceed to mine them. The holders can use their reward points (obtained through staking) to redeem the NFT artworks and get them transferred to their wallets. The obtained NFTs can be held for collection purposes or sold via the auction."
                     />

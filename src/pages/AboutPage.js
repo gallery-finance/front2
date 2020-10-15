@@ -51,7 +51,7 @@ export const AboutPage = () => {
             </div>
 
             <div className="auction__img">
-                <picture>
+                <div className="auction__img transparent">
                     <img
                         src={image1}
                         width="400"
@@ -59,7 +59,7 @@ export const AboutPage = () => {
                         loading="lazy"
                         alt=""
                     />
-                </picture>
+                </div>
             </div>
         </article>
     );

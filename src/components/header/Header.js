@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {useActiveWeb3React} from "../../web3";
 import {formatAddress, formatAmount} from "../../utils/format";
 import {mainContext} from '../../reducer'
@@ -11,11 +11,19 @@ import { Logoicon } from "../../icons";
 export const Header = () => {
     const { active, account, library, chainId } = useActiveWeb3React();
     const {dispatch} = useContext(mainContext);
+    const [showMenu, setShowMenu] = useState(false);
 
     const location = useLocation();
 
+    const handleMenuItemClick = () => {
+        setShowMenu(false);
+    }
+
     return (
-        <header className="header" style={location.pathname === "/" ? {borderBottom: "transparent"} : {}}>
+        <header 
+            className={`header ${showMenu ? 'menu-show' : ""}`} 
+            style={location.pathname === "/" ? {borderBottom: "transparent"} : {}}
+        >
             <div className="center">
                 <div className="header__box">
                     <Link to="/" className="header__logo">
@@ -30,6 +38,7 @@ export const Header = () => {
                                         to="/about"
                                         className="menu__link"
                                         activeClassName="is-current"
+                                        onClick={handleMenuItemClick}
                                     >
                                         About
                                     </NavLink>
@@ -39,6 +48,7 @@ export const Header = () => {
                                         to="/workshop"
                                         className="menu__link"
                                         activeClassName="is-current"
+                                        onClick={handleMenuItemClick}
                                     >
                                         Workshop
                                     </NavLink>
@@ -48,6 +58,7 @@ export const Header = () => {
                                         to="/auction"
                                         className="menu__link"
                                         activeClassName="is-current"
+                                        onClick={handleMenuItemClick}
                                     >
                                         Auction
                                     </NavLink>
@@ -57,6 +68,7 @@ export const Header = () => {
                                         to="/exhibition-hall"
                                         className="menu__link"
                                         activeClassName="is-current"
+                                        onClick={handleMenuItemClick}
                                     >
                                         Exhibition hall
                                     </NavLink>
@@ -66,6 +78,7 @@ export const Header = () => {
                                         to="/pools"
                                         className="menu__link"
                                         activeClassName="is-current"
+                                        onClick={handleMenuItemClick}
                                     >
                                         Pools
                                     </NavLink>
@@ -109,7 +122,11 @@ export const Header = () => {
                 </div>
 
                 <div className="visible-md">
-                    <button className="button btn-menu-toggle" type="button">
+                    <button 
+                        className="button btn-menu-toggle" 
+                        type="button" 
+                        onClick={() => setShowMenu(prev => !prev)}
+                    >
                         Menu
                     </button>
                 </div>
