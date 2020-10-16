@@ -126,7 +126,8 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        $ {loadTotalStaked()}
+                                        {/*$ {loadTotalStaked()}*/}
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>
@@ -209,7 +210,8 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {(burnedTotal && totalSupply) ? formatAmount(new BigNumber(toWei('16000')).minus(burnedTotal).minus(totalSupply).toFixed(0).toString()) : REQUESTING_DATA}
+                                        {/*{(burnedTotal && totalSupply) ? formatAmount(new BigNumber(toWei('16000')).minus(burnedTotal).minus(totalSupply).toFixed(0).toString()) : REQUESTING_DATA}*/}
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>

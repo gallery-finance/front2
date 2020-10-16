@@ -67,7 +67,7 @@ export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
                                     Pool total
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-blue"> $ {(total && price)? new BigNumber(formatAmount(total)).multipliedBy(price).toString() :REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-blue"> $ {(total && price && pool.type !== 'ETH' && pool.type !== 'USDT')? new BigNumber(formatAmount(total)).multipliedBy(price).toString() :REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
@@ -75,7 +75,7 @@ export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{(glfPrice && price && total & totalRewards )?
+                                    <b className="card-pool__dl-green">{(false)?
                                         `${(new BigNumber(glfPrice).multipliedBy(totalRewards) ).dividedBy((new BigNumber(price).multipliedBy(total))).dividedBy(100).toFixed(6).toString()} %`
                                         :REQUESTING_DATA}</b>
                                 </dd>
