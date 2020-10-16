@@ -25,6 +25,7 @@ import {
 } from "../../components/Modals";
 import {PineappleLightIcon, PineappleRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
+import BigNumber from "bignumber.js";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -55,9 +56,8 @@ export const StakingMEME = () => {
 
         const tokenContract = getContract(library, ERC20.abi, getMEMOAddress(chainId))
         const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
-        const weiAmount = toWei(amount, 'ether');
-
-        console.log('starting StakingBOT ETH', account, weiAmount)
+        const weiAmount = new BigNumber(amount).multipliedBy(10000000000);
+        console.log('starting Staking meme ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
             showWaitingWalletConfirmModal: waitingForApprove

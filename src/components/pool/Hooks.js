@@ -10,6 +10,7 @@ import {
 } from "../../web3/address";
 import {getLeftTime} from '../../utils/time'
 import ERC20 from "../../web3/abi/ERC20.json";
+import BigNumber from "bignumber.js";
 
 export const usePoolCard = (token) =>{
     const {account, active, library, chainId} = useActiveWeb3React()
@@ -54,7 +55,12 @@ export const usePoolCard = (token) =>{
             try{
                 contract.methods.totalSupply().call().then(res =>{
                     console.log('bot totalSupply:',res)
-                    setTotal(res)
+                    if(token === 'MEME'){
+                        console.log('mene: token staked',res)
+                        setTotal(new BigNumber(res).multipliedBy(10000000000).toString())
+                    }else {
+                        setTotal(res)
+                    }
                 })
             }catch (e) {
                 console.log('load totalSupply error:',e)
@@ -508,7 +514,7 @@ export const useMEMEStaking = () =>{
         try {
             const tokenContract = getContract(library, ERC20.abi, getMEMOAddress(chainId))
             tokenContract.methods.balanceOf(account).call().then(res =>{
-                console.log('bot balanceOf:',res)
+                console.log('Meme balanceOf:',res)
                 setBalance(res)
             })
         }catch (e) {
