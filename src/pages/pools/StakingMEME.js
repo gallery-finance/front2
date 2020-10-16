@@ -26,6 +26,7 @@ import {
 import {PineappleLightIcon, PineappleRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import BigNumber from "bignumber.js";
+//import { ChainId, Token, WETH, Fetcher, Trade, Route, TokenAmount, TradeType } from '@uniswap/sdk'
 
 const {toWei, fromWei} = Web3.utils
 
@@ -48,6 +49,24 @@ export const StakingMEME = () => {
 
     const {account, active, library, chainId} = useActiveWeb3React()
 
+    // useEffect(()=>{
+    //     async function queryPrice() {
+    //         const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+    //         // note that you may want/need to handle this async code differently,
+    //         //for example if top-level await is not an option
+    //         const ETH = await Fetcher.fetchTokenData(chainId, '0x88ef27e69108b2633f8e1c184cc37940a075cc02', library.provider,'DEGO','Dego Token')
+    //         const pair = await Fetcher.fetchPairData(DAI, ETH)
+    //         const route = new Route([pair], ETH)
+    //         const trade = new Trade(route, new TokenAmount(ETH, '1000000000000000000'), TradeType.EXACT_INPUT)
+    //         console.log(trade.executionPrice.toSignificant(6))
+    //         console.log(trade.nextMidPrice.toSignificant(6))
+    //     }
+    //
+    //     if(active){
+    //         queryPrice()
+    //     }
+    //
+    // },[active])
 
     const onLaunch = async () => {
         console.log('on stake launch')
@@ -57,7 +76,7 @@ export const StakingMEME = () => {
 
         const tokenContract = getContract(library, ERC20.abi, getMEMOAddress(chainId))
         const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
-        const weiAmount = new BigNumber(amount).multipliedBy(10000000000);
+        let weiAmount = new BigNumber(amount).multipliedBy(100000000);
         console.log('starting Staking meme ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
