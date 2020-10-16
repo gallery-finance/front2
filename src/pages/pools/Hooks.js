@@ -1,7 +1,71 @@
 import React, {useState, useEffect} from 'react';
 import StakingRewardsV2 from '../../web3/abi/StakingRewardsV2.json'
 import {getContract, useActiveWeb3React} from "../../web3";
-import {getBotStakingAddress} from "../../web3/address";
+import {
+    getBotStakingAddress, getDEGOStakingAddress, getDONUTStakingAddress,
+    getETHStakingAddress,
+    getMEMOStakingAddress,
+    getUSDTStakingAddress
+} from "../../web3/address";
+import BigNumber from "bignumber.js";
+import Web3 from 'web3'
+
+const {fromWei} = Web3.utils
+
+export const useStatistics = () =>{
+    const {account, active, library, chainId} = useActiveWeb3React()
+    const [totalStaked] = useState()
+    const [glfBalance, setGLFBalance] = useState()
+    const [curPrice, setCurPrice] = useState()
+    const [totalSupply, setTotalSupply] = useState()
+    const [curSupply, setCurSupply] = useState()
+    const [totalBurned, setTotalBurned] = useState()
+
+    async function queryTotalSupply() {
+        console.log('queryTotalSupply')
+        const botContract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
+        const botStaked = await botContract.methods.totalSupply().call()
+
+        const ethContract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+        const ethStaked = await ethContract.methods.totalSupply().call()
+
+        const usdtContract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
+        const usdtStaked = await usdtContract.methods.totalSupply().call()
+
+        const memeContract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
+        const memeStaked = await memeContract.methods.totalSupply().call()
+
+        const donutContract = getContract(library, StakingRewardsV2.abi, getDONUTStakingAddress(chainId))
+        const donutStaked = await donutContract.methods.totalSupply().call()
+
+        const degoContract = getContract(library, StakingRewardsV2.abi, getDEGOStakingAddress(chainId))
+        const degoStaked = await degoContract.methods.totalSupply().call()
+
+        const total = new BigNumber(fromWei(botStaked))
+            .plus(new BigNumber(fromWei(ethStaked)))
+            .plus(new BigNumber(fromWei(usdtStaked)))
+            .plus(new BigNumber(fromWei(memeStaked)))
+            .plus(new BigNumber(fromWei(donutStaked)))
+            .plus(new BigNumber(fromWei(degoStaked)))
+        console.log('total supply----->',total.toString())
+
+        setTotalSupply(total)
+
+
+
+    }
+
+
+
+    useEffect(()=>{
+        if(active){
+            queryTotalSupply()
+        }
+    },[active])
+
+    return {totalStaked}
+}
+
 
 export const useBOTInfo = () =>{
     const {account, active, library, chainId} = useActiveWeb3React()

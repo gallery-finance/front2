@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk'
 import {PoolCard} from '../../components/pool/PoolCard'
 import cover_1 from '../../assets/img/card-pool/1.png'
 import cover_2 from '../../assets/img/card-pool/2.png'
@@ -7,6 +6,7 @@ import cover_3 from '../../assets/img/card-pool/3.png'
 import cover_4 from '../../assets/img/card-pool/4.png'
 import cover_5 from '../../assets/img/card-pool/5.png'
 import cover_6 from '../../assets/img/card-pool/6.png'
+import {REQUESTING_DATA} from "../../const";
 
 
 const poolList = [
@@ -19,26 +19,6 @@ const poolList = [
 ]
 
 export const Pools = () => {
-
-    useEffect(()=>{
-        async function getPrice() {
-            const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
-            const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
-
-// note that you may want/need to handle this async code differently,
-// for example if top-level await is not an option
-            const USDCWETHPair = await Fetcher.fetchPairData(USDC, WETH[ChainId.MAINNET])
-            const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC)
-
-            const route = new Route([USDCWETHPair, DAIUSDCPair], WETH[ChainId.MAINNET])
-
-            console.log(route.midPrice.toSignificant(6)) // 202.081
-            console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
-        }
-
-        getPrice()
-
-    },[])
 
     return (
         <div>
@@ -92,26 +72,15 @@ export const Pools = () => {
                                 <div className="statistics__dl-row">
 
                                     <dt className="statistics__dl-dt">
-                                        Total staked
+                                        Total staked Value
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        12,252
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>
 
-                                <div className="statistics__dl-row">
-
-                                    <dt className="statistics__dl-dt">
-                                        Total value
-                                    </dt>
-
-                                    <dd className="statistics__dl-dd">
-                                        15,11%
-                                    </dd>
-
-                                </div>
 
                             </dl>
 
@@ -147,7 +116,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        $112,12
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>
@@ -178,7 +147,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        20,000
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>
@@ -190,7 +159,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        8,254
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>
@@ -202,7 +171,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        8,254
+                                        {REQUESTING_DATA}
                                     </dd>
 
                                 </div>

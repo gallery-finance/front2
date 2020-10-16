@@ -505,17 +505,6 @@ export const StakingUSDT = () => {
 
                             </div>
 
-                            <div className="statistics__dl-row">
-
-                                <dt className="statistics__dl-dt">
-                                    Share of Pool
-                                </dt>
-
-                                <dd className="statistics__dl-dd">
-                                    15.11%
-                                </dd>
-
-                            </div>
 
                         </dl>
                         <a target="_blank" href="https://app.uniswap.org/#/add/0x47fd85128312ee72aa0e0382a531a8f848b8b2cb/0xdac17f958d2ee523a2206206994597c13d831ec7" className="statistics__btn btn">

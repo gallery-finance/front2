@@ -1103,8 +1103,6 @@ export const StakingMEME = () => {
                             setUnStaking(true)
                         }}>
                             Unstake
-                        }}>
-                            Unstake
                         </a>
 
                     </div>
@@ -1188,6 +1186,7 @@ export const StakingMEME = () => {
                     <div className="wrapper">
                         <ClaimedTokensModal
                             amount={rewards}
+                            stakedTime={stakedTime}
                             symbol={'GLF'}
                             onOk={() => {
                                 setClaimed(false)

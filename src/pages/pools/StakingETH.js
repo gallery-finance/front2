@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import {mainContext} from "../../reducer";
 import {useETHStaking} from "../../components/pool/Hooks";
@@ -25,6 +25,7 @@ import {BOTLightIcon, UniswapBlackIcon, UniswapLightIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import Web3 from "web3";
 import {formatAmount} from "../../utils/format";
+import {ChainId, Fetcher, Route, Token, WETH, Pair, TokenAmount} from "@uniswap/sdk";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -45,6 +46,23 @@ export const StakingETH = () => {
     const [amount, setAmount] = useState()
 
     const {account, active, library, chainId} = useActiveWeb3React()
+
+
+    useEffect(()=>{
+
+        async function getPrice() {
+
+            const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
+            const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
+
+            const pair = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
+
+            console.log('pair',pair)
+        }
+
+        getPrice()
+
+    },[])
 
 
     const onLaunch = async () => {
@@ -247,6 +265,7 @@ export const StakingETH = () => {
             console.log('err', err);
         }
     };
+
 
     return(
         <article className="center">

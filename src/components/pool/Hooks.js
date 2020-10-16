@@ -66,7 +66,7 @@ export const usePoolCard = (token) =>{
             try{
                 contract.methods.startAt().call().then(res =>{
                     console.log('bot startAt:',res)
-                    setTime(res - 14*24*60*60*1000)
+                    setTime(res)
                 })
             }catch (e) {
                 console.log('load startAt error:',e)

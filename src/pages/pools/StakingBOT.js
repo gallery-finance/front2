@@ -497,6 +497,7 @@ export const StakingBOT = () => {
                     <div className="wrapper">
                         <ClaimedTokensModal
                             amount={rewards}
+                            time={stakedTime}
                             symbol={'GLF'}
                             onOk={() => {
                                 setClaimed(false)
