@@ -76,7 +76,7 @@ export const StakingMEME = () => {
 
         const tokenContract = getContract(library, ERC20.abi, getMEMOAddress(chainId))
         const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
-        let weiAmount = new BigNumber(amount).multipliedBy(100000000);
+        let weiAmount = new BigNumber(amount).multipliedBy('100000000');
         console.log('starting Staking meme ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
