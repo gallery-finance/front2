@@ -51,7 +51,6 @@ export const useStatistics = () =>{
             .plus(new BigNumber(fromWei(memeStaked)))
             .plus(new BigNumber(fromWei(donutStaked)))
             .plus(new BigNumber(fromWei(degoStaked)))
-        console.log('total supply----->',total.toString())
 
         setTotalSupply(total)
     }
@@ -65,7 +64,6 @@ export const useStatistics = () =>{
 
             const glfContract = getContract(library, ERC20.abi, getGLFStakingAddress(chainId))
              glfContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call().then((res)=>{
-                 console.log('total burned',res)
                  setBurnedTotal(res)
              })
         }

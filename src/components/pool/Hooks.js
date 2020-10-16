@@ -24,6 +24,15 @@ export const usePoolCard = (token) =>{
             switch (token) {
                 case 'ETH':
                      contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+                    try{
+                        contract.methods.startAt().call().then(res =>{
+                            console.log('bot startAt:',res)
+                            setTime(res - 14*24*60*60*1000)
+                        })
+                    }catch (e) {
+                        console.log('load startAt error:',e)
+
+                    }
                     break
                 case 'USDT':
                      contract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
@@ -52,16 +61,6 @@ export const usePoolCard = (token) =>{
 
             }
 
-
-            try{
-                contract.methods.startAt().call().then(res =>{
-                    console.log('bot startAt:',res)
-                    setTime(res - 14*24*60*60*1000)
-                })
-            }catch (e) {
-                console.log('load startAt error:',e)
-
-            }
 
             try{
                 contract.methods.startAt().call().then(res =>{
