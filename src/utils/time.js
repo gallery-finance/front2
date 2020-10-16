@@ -24,9 +24,8 @@ export const getLeftTime = (time)=>{
 }
 
 export const getPercent = (time) =>{
-    if(0 < time && time < 24){
-        console.log('time------>',time , typeof time)
 
+    if(0 < time && time < 24){
         return 50
     }else if(24 < time && time < 48){
         return 40
@@ -47,6 +46,6 @@ export const getPercent = (time) =>{
     }else if(216 < time && time < 240){
         return 2
     }else {
-        return 0
+        return 50
     }
 }

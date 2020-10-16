@@ -2,7 +2,8 @@ import React, {useContext, useState} from "react";
 import {getPercent} from "../../utils/time";
 import {formatAmount} from "../../utils/format";
 import BigNumber from "bignumber.js";
-
+import Web3 from 'web3'
+const {fromWei} = Web3.utils
 export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => {
 
     const [checked, setChecked] = useState(true)
@@ -29,7 +30,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            {`You will get ${(rewards && stakedTime) && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent(stakedTime)) / 100)).toFixed(0).toString()))} GLF (${getPercent(stakedTime)} % of your GLF) if you will claim
+                            {`You will get ${rewards && fromWei((rewards*((100-getPercent(stakedTime))/100)).toString())} GLF (${getPercent(stakedTime)} % of your GLF) if you will claim
                             your reward now`}
                         </p>
                         <div className="claim-reward__columns">

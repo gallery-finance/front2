@@ -4,9 +4,12 @@ import { HANDLE_SHOW_UNSTAKED_TOKENS_MODAL } from "../../const";
 import { mainContext } from "../../reducer";
 import {formatAmount} from "../../utils/format";
 import BigNumber from "bignumber.js";
+import Web3 from 'web3'
 import {getPercent} from "../../utils/time";
 
-export const ClaimedTokensModal = ({onOk, amount, symbol,time}) => {
+const {fromWei} =Web3.utils
+
+export const ClaimedTokensModal = ({onOk, rewards, symbol,stakedTime}) => {
     const { dispatch } = useContext(mainContext);
 
     return (
@@ -24,7 +27,7 @@ export const ClaimedTokensModal = ({onOk, amount, symbol,time}) => {
                             <p className="color-gray">
                                 You have successfully claimed
                             </p>
-                            {`${(amount && time) && (formatAmount((new BigNumber(amount).multipliedBy((100-getPercent(amount)) / 100)).toFixed(0).toString()))} ${symbol}`}
+                            {`${rewards && fromWei((rewards*((100-getPercent(stakedTime))/100)).toString())} GLF`}
                         </div>
                         <button
                             type="button"

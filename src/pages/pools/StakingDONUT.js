@@ -264,7 +264,7 @@ export const StakingDONUT = () => {
 
                 <div className="head-page__btn">
 
-                    <a href="/" className="btn">
+                    <a target="_blank" href="https://app.uniswap.org/#/swap?inputCurrency=0x47fd85128312ee72aa0e0382a531a8f848b8b2cb&outputCurrency=0xdac17f958d2ee523a2206206994597c13d831ec7" className="btn">
                         Buy GLF
                     </a>
 

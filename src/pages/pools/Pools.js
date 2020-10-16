@@ -7,6 +7,8 @@ import cover_4 from '../../assets/img/card-pool/4.png'
 import cover_5 from '../../assets/img/card-pool/5.png'
 import cover_6 from '../../assets/img/card-pool/6.png'
 import {REQUESTING_DATA} from "../../const";
+import {useGLFBalance} from "../Hooks";
+import {formatAmount} from "../../utils/format";
 
 
 const poolList = [
@@ -20,6 +22,8 @@ const poolList = [
 
 export const Pools = () => {
 
+    const {glfBalance} = useGLFBalance()
+
     return (
         <div>
             <div/>
@@ -30,7 +34,7 @@ export const Pools = () => {
                     <p className="head-page__intro">Buy GLF tokens now on Uniswap</p>
 
                     <div className="head-page__btn">
-                        <a href="/" className="btn">
+                        <a target="_blank" href="https://app.uniswap.org/#/swap?inputCurrency=0x47fd85128312ee72aa0e0382a531a8f848b8b2cb&outputCurrency=0xdac17f958d2ee523a2206206994597c13d831ec7" className="btn">
                             Buy GLF
                         </a>
                     </div>
@@ -104,7 +108,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        22,11
+                                        {glfBalance && formatAmount(glfBalance)}
                                     </dd>
 
                                 </div>
@@ -123,7 +127,7 @@ export const Pools = () => {
 
                             </dl>
 
-                            <a href="/" className="statistics__btn btn">
+                            <a target="_blank" href="https://app.uniswap.org/#/swap?inputCurrency=0x47fd85128312ee72aa0e0382a531a8f848b8b2cb&outputCurrency=0xdac17f958d2ee523a2206206994597c13d831ec7" className="statistics__btn btn">
                                 Get GLF
                             </a>
 
@@ -147,7 +151,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {REQUESTING_DATA}
+                                        30000
                                     </dd>
 
                                 </div>
