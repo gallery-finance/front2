@@ -9,6 +9,7 @@ import cover_6 from '../../assets/img/card-pool/6.png'
 import {REQUESTING_DATA} from "../../const";
 import {useGLFBalance} from "../Hooks";
 import {formatAmount} from "../../utils/format";
+import {useStatistics} from "./Hooks";
 
 
 const poolList = [
@@ -23,7 +24,7 @@ const poolList = [
 export const Pools = () => {
 
     const {glfBalance} = useGLFBalance()
-
+    const {burnedTotal} = useStatistics()
     return (
         <div>
             <div/>
@@ -175,7 +176,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {REQUESTING_DATA}
+                                        {burnedTotal && formatAmount(burnedTotal)}
                                     </dd>
 
                                 </div>

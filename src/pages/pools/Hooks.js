@@ -3,11 +3,12 @@ import StakingRewardsV2 from '../../web3/abi/StakingRewardsV2.json'
 import {getContract, useActiveWeb3React} from "../../web3";
 import {
     getBotStakingAddress, getDEGOStakingAddress, getDONUTStakingAddress,
-    getETHStakingAddress,
+    getETHStakingAddress, getGLFStakingAddress,
     getMEMOStakingAddress,
     getUSDTStakingAddress
 } from "../../web3/address";
 import BigNumber from "bignumber.js";
+import ERC20 from "../../web3/abi/ERC20.json";
 import Web3 from 'web3'
 
 const {fromWei} = Web3.utils
@@ -20,6 +21,9 @@ export const useStatistics = () =>{
     const [totalSupply, setTotalSupply] = useState()
     const [curSupply, setCurSupply] = useState()
     const [totalBurned, setTotalBurned] = useState()
+
+    const [burnedTotal, setBurnedTotal] = useState()
+
 
     async function queryTotalSupply() {
         console.log('queryTotalSupply')
@@ -50,20 +54,24 @@ export const useStatistics = () =>{
         console.log('total supply----->',total.toString())
 
         setTotalSupply(total)
-
-
-
     }
+
 
 
 
     useEffect(()=>{
         if(active){
             queryTotalSupply()
+
+            const glfContract = getContract(library, ERC20.abi, getGLFStakingAddress(chainId))
+             glfContract.methods.balanceOf('0x000000000000000000000000000000000000dEaD').call().then((res)=>{
+                 console.log('total burned',res)
+                 setBurnedTotal(res)
+             })
         }
     },[active])
 
-    return {totalStaked}
+    return {totalStaked, burnedTotal}
 }
 
 
