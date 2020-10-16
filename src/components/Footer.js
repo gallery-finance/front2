@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className="footer" style={{zIndex: -1}}>
             <ul className="footer__links">
                 <li>
                     <a

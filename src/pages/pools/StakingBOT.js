@@ -269,7 +269,7 @@ export const StakingBOT = () => {
 
                 <div className="head-page__btn">
 
-                    <a href="/" className="btn">
+                    <a href="" className="btn">
                         Buy GLF
                     </a>
 

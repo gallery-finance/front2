@@ -45,8 +45,8 @@ export const AboutPage = () => {
                     <span className="gold-color">liquidity mining</span> and the
                     first artist workshop, which will be launched in the near future.{" "}
                 </p>
-                <div className="auction__btn">
-                    <Link to="/">Get GLF</Link>
+                <div classNamle="auction__btn">
+                    <a target="_blank" href="https://app.uniswap.org/#/swap?inputCurrency=0x47fd85128312ee72aa0e0382a531a8f848b8b2cb&outputCurrency=0xdac17f958d2ee523a2206206994597c13d831ec7">Get GLF</a>
                 </div>
             </div>
 

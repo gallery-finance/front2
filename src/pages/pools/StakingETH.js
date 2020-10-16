@@ -265,7 +265,7 @@ export const StakingETH = () => {
 
                 <div className="head-page__btn">
 
-                    <a href="/" className="btn">
+                    <a target="_blank" href=" https://etherscan.io/token/0x710980bb4a0866e9ec162ccd84439dda5a04b99c" className="btn">
                         Buy GLF
                     </a>
 
@@ -523,7 +523,7 @@ export const StakingETH = () => {
                             </div>
 
                         </dl>
-                        <a target="_blank" href="https://app.uniswap.org/#/add/ETH/0x12F585257d714Bc8242b24FAc056E291Aeff22A7 " className="statistics__btn btn">
+                        <a target="_blank" href="https://app.uniswap.org/#/add/0x47fd85128312ee72aa0e0382a531a8f848b8b2cb/ETH" className="statistics__btn btn">
                             Add/Remove Liquidity
                         </a>
 
