@@ -26,7 +26,7 @@ import {
 import {PineappleLightIcon, PineappleRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import BigNumber from "bignumber.js";
-//import { ChainId, Token, WETH, Fetcher, Trade, Route, TokenAmount, TradeType } from '@uniswap/sdk'
+import {ChainId, Token, WETH, Fetcher, Trade, Route, TokenAmount, TradeType, Pair} from '@uniswap/sdk'
 
 const {toWei, fromWei} = Web3.utils
 
@@ -49,24 +49,33 @@ export const StakingMEME = () => {
 
     const {account, active, library, chainId} = useActiveWeb3React()
 
-    // useEffect(()=>{
-    //     async function queryPrice() {
-    //         const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
-    //         // note that you may want/need to handle this async code differently,
-    //         //for example if top-level await is not an option
-    //         const ETH = await Fetcher.fetchTokenData(chainId, '0x88ef27e69108b2633f8e1c184cc37940a075cc02', library.provider,'DEGO','Dego Token')
-    //         const pair = await Fetcher.fetchPairData(DAI, ETH)
-    //         const route = new Route([pair], ETH)
-    //         const trade = new Trade(route, new TokenAmount(ETH, '1000000000000000000'), TradeType.EXACT_INPUT)
-    //         console.log(trade.executionPrice.toSignificant(6))
-    //         console.log(trade.nextMidPrice.toSignificant(6))
-    //     }
-    //
-    //     if(active){
-    //         queryPrice()
-    //     }
-    //
-    // },[active])
+//     useEffect(()=>{
+//         const uniswap = async (token1, token2, charID = 1) => {
+//             const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
+//             const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+//
+//             //const ETH = new Token(ChainId.MAINNET, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c', 18)
+//             const ETH = await Fetcher.fetchTokenData(chainId, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c')
+// // note that you may want/need to handle this async code differently,
+// // for example if top-level await is not an option
+//             const USDCWETHPair = await Fetcher.fetchPairData(USDC, ETH)
+//             const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC)
+//
+//             const route = new Route([USDCWETHPair, DAIUSDCPair], ETH)
+//
+//             console.log(route.midPrice.toSignificant(6)) // 202.081
+//             console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
+//         }
+//
+//
+//         if(active){
+//              setTimeout(()=>{
+//                  //uniswap()
+//              },1000)
+//
+//         }
+//
+//     },[active])
 
     const onLaunch = async () => {
         console.log('on stake launch')

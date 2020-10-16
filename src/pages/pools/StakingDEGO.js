@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import {mainContext} from "../../reducer";
-import {useBOTStaking, useDEGOStaking} from "../../components/pool/Hooks";
+import {useDEGOStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import {
     ClaimRewardModal,
@@ -10,11 +10,11 @@ import {
     StakeModal, UnstakedTokensModal,
     UnstakeModal
 } from "../../components/Modals";
-import {BOTLightIcon, BOTRedIcon, DegoLightIcon, DegoRedIcon} from "../../icons";
+import {DegoLightIcon, DegoRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import Web3 from "web3";
 import ERC20 from "../../web3/abi/ERC20.json";
-import {getBotAddress, getBotStakingAddress, getDEGOAddress, getDEGOStakingAddress} from "../../web3/address";
+import {getDEGOAddress, getDEGOStakingAddress} from "../../web3/address";
 import StakingRewardsV2 from "../../web3/abi/StakingRewardsV2.json";
 import {
     HANDLE_SHOW_CONNECT_MODAL,

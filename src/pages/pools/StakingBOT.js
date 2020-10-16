@@ -20,7 +20,7 @@ import {
     waitingForApprove, waitingForConfirm, waitingForInit, waitingPending
 } from "../../const";
 import {mainContext} from "../../reducer";
-import {useBOTStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {BackButton} from "../../components/BackButton";
 import {formatAmount, weiDiv} from "../../utils/format";
 import {BOTLightIcon, BOTRedIcon} from "../../icons";
@@ -34,7 +34,7 @@ export const StakingBOT = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useBOTStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('BOT')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)

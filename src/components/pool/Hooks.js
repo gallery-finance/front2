@@ -98,22 +98,47 @@ export const usePoolCard = (token) =>{
 }
 
 
-
-export const useBOTStaking = () =>{
+export const useStaking = (token) =>{
     const {account, active, library, chainId} = useActiveWeb3React()
     const [ balance, setBalance] = useState()
     const [ stakedAmount, setStakedAmount] = useState()
     const [ rewards, setRewards] = useState()
     const [ stakedTime, setStakedTime] = useState()
-
-
     const [ total, setTotal] = useState()
 
+    async function query() {
 
-    useEffect(()=>{
+        let contract;
+        let tokenContract;
+        switch (token) {
+            case 'ETH':
+                contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getETHAddress(chainId))
+
+                break
+            case 'USDT':
+                contract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getUSDTAddress(chainId))
+                break
+            case 'DEGO':
+                contract = getContract(library, StakingRewardsV2.abi, getDEGOStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getDEGOAddress(chainId))
+                break
+            case 'MEME':
+                contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getMEMOAddress(chainId))
+                break
+            case 'DONUT':
+                contract = getContract(library, StakingRewardsV2.abi, getDONUTStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getDONUTAddress(chainId))
+                break
+            case 'BOT':
+                contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
+                tokenContract = getContract(library, ERC20.abi, getBotAddress(chainId))
+                break
+        }
 
         try {
-            const tokenContract = getContract(library, ERC20.abi, getBotAddress(chainId))
             tokenContract.methods.balanceOf(account).call().then(res =>{
                 console.log('bot balanceOf:',res)
                 setBalance(res)
@@ -123,82 +148,100 @@ export const useBOTStaking = () =>{
         }
 
 
-        
         try {
-            const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
             contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
+                if(!error){
+                    contract.methods.balanceOf(account).call().then(res =>{
+                        console.log('bot balanceOf:',res)
+                        setStakedAmount(res)
+                    })
+                }
+
             })
         }catch (e) {
             console.log('load events error:',e)
         }
 
-        
+        try{
+            contract.methods.balanceOf(account).call().then(res =>{
+                console.log('bot balanceOf:',res)
+                setStakedAmount(res)
+            })
+        }catch (e) {
+            console.log('load totalSupply error:',e)
+        }
+
+        try{
+            contract.methods.totalSupply().call().then().then(res =>{
+                console.log('bot totalSupply:',res)
+                setTotal(res)
+            })
+        }catch (e) {
+            console.log('load totalSupply error:',e)
+
+        }
+
+
+        try{
+            contract.methods.lastUpdateAt(account).call().then(res =>{
+                console.log('bot lastUpdateAt:',res)
+                if(res == 0){
+                    setStakedTime(res)
+                }else {
+                    const time = res * 1000;
+                    const now = new Date();
+                    const lefttime = now - time;
+                    let lefth = Math.floor(lefttime / 1000 / 60 /60);
+                    console.log('bot staked time ',time, lefttime, lefth)
+                    setStakedTime(lefth)
+                }
+            })
+        }catch (e) {
+            console.log('load startAt error:',e)
+
+        }
+    }
+
+    async function queryRewards() {
+        console.log('queryRewards',token)
+        let contract;
+        switch (token) {
+            case 'ETH':
+                contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+                break
+            case 'USDT':
+                contract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
+                break
+            case 'DEGO':
+                contract = getContract(library, StakingRewardsV2.abi, getDEGOStakingAddress(chainId))
+                break
+            case 'MEME':
+                contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
+                break
+            case 'DONUT':
+                contract = getContract(library, StakingRewardsV2.abi, getDONUTStakingAddress(chainId))
+                break
+            case 'BOT':
+                contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
+                break
+        }
+            const earned = await contract.methods.earned(account).call()
+            const lastRewards = await contract.methods.rewards(account).call()
+            console.log('all bot rewards', new BigNumber(earned).plus(lastRewards).toString())
+            setRewards(new BigNumber(earned).plus(lastRewards).toString())
+    }
+
+    useEffect(()=>{
         if(active){
-            try{
-                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
-            }catch (e) {
-                console.log('load totalSupply error:',e)
-            }
-
-            try{
-                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.totalSupply().call().then().then(res =>{
-                    console.log('bot totalSupply:',res)
-                    setTotal(res)
-                })
-            }catch (e) {
-                console.log('load totalSupply error:',e)
-
-            }
-
-
-            try{
-                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.lastUpdateAt(account).call().then().then(res =>{
-                    console.log('bot lastUpdateAt:',res)
-                    if(res == 0){
-                        setStakedTime(res)
-                    }else {
-                        const time = res * 1000;
-                        const now = new Date();
-                        const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
-                        console.log('bot staked time ',time, lefttime, lefth)
-                        setStakedTime(lefth)
-                    }
-                })
-            }catch (e) {
-                console.log('load startAt error:',e)
-
-            }
-
-            try{
-                const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
-                contract.methods.earned(account).call().then().then(res =>{
-                    console.log('bot earned:',res)
-                    setRewards(res)
-                })
-            }catch (e) {
-                console.log('load startAt error:',e)
-
-            }
-
+            query()
+            queryRewards()
         }
     },[active])
 
-
-
     return {balance, rewards, stakedAmount,stakedTime ,total}
+
 }
+
 
 export const useETHStaking = () =>{
     const {account, active, library, chainId} = useActiveWeb3React()
@@ -213,34 +256,35 @@ export const useETHStaking = () =>{
 
     useEffect(()=>{
 
-        try {
-            const tokenContract = getContract(library, ERC20.abi, getETHAddress(chainId))
-            tokenContract.methods.balanceOf(account).call().then(res =>{
-                console.log('bot balanceOf:',res)
-                setBalance(res)
-            })
-        }catch (e) {
-            console.log('load events error:',e)
-        }
-
-
-
-        try {
-            const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
-            contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
-            })
-        }catch (e) {
-            console.log('load events error:',e)
-        }
-
         if(active){
+            const tokenContract = getContract(library, ERC20.abi, getETHAddress(chainId))
+            const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+
+            try {
+                tokenContract.methods.balanceOf(account).call().then(res =>{
+                    console.log('bot balanceOf:',res)
+                    setBalance(res)
+                })
+            }catch (e) {
+                console.log('load events error:',e)
+            }
+
+
+            try {
+                contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
+                    if(!error){
+                        contract.methods.balanceOf(account).call().then(res =>{
+                            console.log('bot balanceOf:',res)
+                            setStakedAmount(res)
+                        })
+                    }
+
+                })
+            }catch (e) {
+                console.log('load events error:',e)
+            }
+
             try{
-                const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
                 contract.methods.balanceOf(account).call().then(res =>{
                     console.log('bot balanceOf:',res)
                     setStakedAmount(res)
@@ -250,7 +294,6 @@ export const useETHStaking = () =>{
             }
 
             try{
-                const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
                 contract.methods.totalSupply().call().then().then(res =>{
                     console.log('bot totalSupply:',res)
                     setTotal(res)
@@ -262,8 +305,7 @@ export const useETHStaking = () =>{
 
 
             try{
-                const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
-                contract.methods.lastUpdateAt(account).call().then().then(res =>{
+                contract.methods.lastUpdateAt(account).call().then(res =>{
                     console.log('bot lastUpdateAt:',res)
                     if(res == 0){
                         setStakedTime(res)
@@ -280,18 +322,20 @@ export const useETHStaking = () =>{
                 console.log('load startAt error:',e)
 
             }
+        }
 
-            try{
-                const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
-                contract.methods.earned(account).call().then().then(res =>{
-                    console.log('bot earned:',res)
-                    setRewards(res)
-                })
-            }catch (e) {
-                console.log('load startAt error:',e)
+        async function getRewards() {
+            const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
+            const earned = await contract.methods.earned(account).call()
+            const lastRewards = await contract.methods.rewards(account).call()
+            console.log('all bot rewards', new BigNumber(earned).plus(lastRewards))
+            setRewards(new BigNumber(earned).plus(lastRewards))
+        }
 
-            }
 
+
+        if(active){
+            getRewards()
         }
     },[active])
 
@@ -328,10 +372,13 @@ export const useUSDTStaking = () =>{
         try {
             const contract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
             contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
+                if(!error){
+                    contract.methods.balanceOf(account).call().then(res =>{
+                        console.log('bot balanceOf:',res)
+                        setStakedAmount(res)
+                    })
+                }
+
             })
         }catch (e) {
             console.log('load events error:',e)
@@ -427,10 +474,12 @@ export const useDONUTStaking = () =>{
         try {
             const contract = getContract(library, StakingRewardsV2.abi, getDONUTStakingAddress(chainId))
             contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
+                if(!error){
+                    contract.methods.balanceOf(account).call().then(res =>{
+                        console.log('bot balanceOf:',res)
+                        setStakedAmount(res)
+                    })
+                }
             })
         }catch (e) {
             console.log('load events error:',e)
@@ -526,10 +575,13 @@ export const useMEMEStaking = () =>{
         try {
             const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
             contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
+                if(!error){
+                    contract.methods.balanceOf(account).call().then(res =>{
+                        console.log('bot balanceOf:',res)
+                        setStakedAmount(res)
+                    })
+                }
+
             })
         }catch (e) {
             console.log('load events error:',e)
@@ -625,10 +677,13 @@ export const useDEGOStaking = () =>{
         try {
             const contract = getContract(library, StakingRewardsV2.abi, getDEGOStakingAddress(chainId))
             contract.events.Staked({}, {fromBlock: 0, toBlock: 'latest'}, (error, event)=>{
-                contract.methods.balanceOf(account).call().then(res =>{
-                    console.log('bot balanceOf:',res)
-                    setStakedAmount(res)
-                })
+                if(!error){
+                    contract.methods.balanceOf(account).call().then(res =>{
+                        console.log('bot balanceOf:',res)
+                        setStakedAmount(res)
+                    })
+                }
+
             })
         }catch (e) {
             console.log('load events error:',e)
