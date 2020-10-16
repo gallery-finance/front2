@@ -11,7 +11,7 @@ import {DonutLightIcon, DonutRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import Web3 from "web3";
 import {mainContext} from "../../reducer";
-import {useDONUTStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import ERC20 from "../../web3/abi/ERC20.json";
 import {getDONUTAddress, getDONUTStakingAddress, } from "../../web3/address";
@@ -33,7 +33,7 @@ export const StakingDONUT = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useDONUTStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('DONUT')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)

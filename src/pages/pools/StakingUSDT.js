@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import Web3 from "web3";
 import {mainContext} from "../../reducer";
-import {useETHStaking, useUSDTStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import {
     ClaimRewardModal,
@@ -24,7 +24,7 @@ import {
     waitingForConfirm, waitingForInit,
     waitingPending
 } from "../../const";
-import {formatAmount, weiDiv} from "../../utils/format";
+import {formatAmount} from "../../utils/format";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -34,7 +34,7 @@ export const StakingUSDT = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useUSDTStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('USDT')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)

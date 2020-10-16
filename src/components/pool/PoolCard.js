@@ -7,8 +7,9 @@ import {
 } from "./Hooks";
 import {formatAmount} from "../../utils/format";
 import {REQUESTING_DATA} from "../../const";
+import BigNumber from "bignumber.js";
 
-export const PoolCard = ({pool}) => {
+export const PoolCard = ({pool, price, loadTotal}) => {
 
     const {total, time, apy} = usePoolCard(pool.type)
 
@@ -18,6 +19,12 @@ export const PoolCard = ({pool}) => {
     useEffect(()=>{
         setShow(true)
     },[])
+
+    useEffect(()=>{
+        if(total){
+            loadTotal({total, token: pool.type})
+        }
+    },[total])
 
     useEffect(()=>{
         setTime(time)
@@ -58,7 +65,7 @@ export const PoolCard = ({pool}) => {
                                     Pool total
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-blue"> {REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-blue"> {(total && price)? new BigNumber(formatAmount(total)).multipliedBy(price).toString() :REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">

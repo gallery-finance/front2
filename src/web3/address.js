@@ -153,3 +153,9 @@ export function getDONUTAddress(chainId) {
             return '0xc0f9bd5fa5698b6505f643900ffa515ea5df54a9'
     }
 }
+
+
+
+export function getUSDTTokenAddress() {
+    return '0xdac17f958d2ee523a2206206994597c13d831ec7'
+}

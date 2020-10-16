@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {PoolCard} from '../../components/pool/PoolCard'
 import cover_1 from '../../assets/img/card-pool/1.png'
 import cover_2 from '../../assets/img/card-pool/2.png'
@@ -10,8 +10,10 @@ import {REQUESTING_DATA} from "../../const";
 import {useGLFBalance} from "../Hooks";
 import {formatAmount} from "../../utils/format";
 import {useStatistics} from "./Hooks";
-import { ChainId, Token, TokenAmount, Pair, Route } from '@uniswap/sdk'
+import BigNumber from "bignumber.js";
+import Web3 from 'web3'
 
+const {toWei, fromWei} = Web3.utils
 
 const poolList = [
     {type: 'ETH', label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`, link: 'staking-eth'},
@@ -25,18 +27,29 @@ const poolList = [
 export const Pools = () => {
 
     const {glfBalance} = useGLFBalance()
-    const {burnedTotal} = useStatistics()
+    const {burnedTotal, curPrice, BOTPrice, USDTPrice, DEGOPrice, DONUTPrice, MEMEPrice, ETHPrice, totalSupply } = useStatistics()
+    const [ETHStaked, setETHStaked] = useState()
+    const [USDTStaked, setUSDTStaked] = useState()
+    const [DEGOStaked, setDEGOStaked] = useState()
+    const [MEMEStaked, setMEMEStaked] = useState()
+    const [DONUTStaked, setDONUTStaked] = useState()
+    const [BOTStaked, setBOTStaked] = useState()
 
+    function loadTotalStaked () {
+        console.log('loadTotalStaked',BOTPrice,BOTStaked)
+        if (BOTPrice && BOTStaked && USDTPrice && USDTStaked && DEGOPrice && DEGOStaked && ETHPrice && ETHStaked && MEMEPrice && MEMEStaked && DONUTPrice && DONUTStaked){
+            console.log('loadTotalStaked',BOTPrice,BOTStaked)
+            return (new BigNumber(formatAmount(BOTStaked)).multipliedBy(BOTPrice))
+                .plus((new BigNumber(formatAmount(USDTStaked)).multipliedBy(USDTPrice)))
+                .plus((new BigNumber(formatAmount(DEGOStaked)).multipliedBy(DEGOPrice)))
+                .plus((new BigNumber(formatAmount(MEMEStaked)).multipliedBy(MEMEPrice)))
+                .plus((new BigNumber(formatAmount(DONUTStaked)).multipliedBy(DONUTPrice)))
+                .toFixed(6)
+                .toString()
+        }
+        return REQUESTING_DATA
+    }
 
-    // useEffect(()=>{
-    //
-    //     const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
-    //     const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
-    //     const HOT_NOT = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
-    //     const route = new Route([HOT_NOT], NOT)
-    //     console.log('midPrice', route.midPrice)
-    //
-    // },[])
     return (
         <div>
             <div/>
@@ -58,7 +71,27 @@ export const Pools = () => {
                     <div className="card-pool__list">
                         {poolList.map(item =>{
                             return (
-                                <PoolCard pool={item}/>
+                                <PoolCard loadTotal={(total)=>{
+                                    switch (total.token) {
+                                        case 'ETH':
+                                            setETHStaked(total.total)
+                                            break
+                                        case 'USDT':
+                                            setUSDTStaked(total.total)
+                                            break
+                                        case 'MEME':
+                                            setMEMEStaked(total.total)
+                                            break
+                                        case 'DONUT':
+                                            setDONUTStaked(total.total)
+                                            break
+                                        case 'DEGO':
+                                            setDEGOStaked(total.total)
+                                            break
+                                        case 'BOT':
+                                            setBOTStaked(total.total)
+                                    }
+                                }} price={item.type === 'ETH'? ETHPrice: item.type === 'BOT'? BOTPrice: item.type === 'MEME'? MEMEPrice: item.type === 'DEGO'? DEGOPrice: item.type === 'DONUT'? DONUTPrice: USDTPrice} pool={item}/>
                             )
                         })}
 
@@ -93,7 +126,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {REQUESTING_DATA}
+                                        {loadTotalStaked()}
                                     </dd>
 
                                 </div>
@@ -133,7 +166,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {REQUESTING_DATA}
+                                        {curPrice && curPrice}
                                     </dd>
 
                                 </div>
@@ -176,7 +209,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {REQUESTING_DATA}
+                                        {(burnedTotal && totalSupply) ? formatAmount(new BigNumber(toWei('16000')).minus(burnedTotal).minus(totalSupply).toFixed(0).toString()) : REQUESTING_DATA}
                                     </dd>
 
                                 </div>

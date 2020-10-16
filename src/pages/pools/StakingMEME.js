@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import Web3 from "web3";
 import {mainContext} from "../../reducer";
-import {useMEMEStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import ERC20 from "../../web3/abi/ERC20.json";
 import {getMEMOAddress, getMEMOStakingAddress} from "../../web3/address";
@@ -36,7 +36,7 @@ export const StakingMEME = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useMEMEStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('MEME')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)
@@ -49,33 +49,36 @@ export const StakingMEME = () => {
 
     const {account, active, library, chainId} = useActiveWeb3React()
 
-//     useEffect(()=>{
-//         const uniswap = async (token1, token2, charID = 1) => {
-//             const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
-//             const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
-//
-//             //const ETH = new Token(ChainId.MAINNET, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c', 18)
-//             const ETH = await Fetcher.fetchTokenData(chainId, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c')
-// // note that you may want/need to handle this async code differently,
-// // for example if top-level await is not an option
-//             const USDCWETHPair = await Fetcher.fetchPairData(USDC, ETH)
-//             const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC)
-//
-//             const route = new Route([USDCWETHPair, DAIUSDCPair], ETH)
-//
-//             console.log(route.midPrice.toSignificant(6)) // 202.081
-//             console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
-//         }
-//
-//
-//         if(active){
-//              setTimeout(()=>{
-//                  //uniswap()
-//              },1000)
-//
-//         }
-//
-//     },[active])
+    useEffect(()=>{
+        const uniswap = async (token1, token2, charID = 1) => {
+            const USDT = new Token(ChainId.MAINNET, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6)
+            //const ETH = new Token(ChainId.MAINNET, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c', 18)
+            const ETH = await Fetcher.fetchTokenData(chainId, '0x5beabaebb3146685dd74176f68a0721f91297d37')
+            console.log('eth--->',ETH)
+// note that you may want/need to handle this async code differently,
+// for example if top-level await is not an option
+            const USDCWETHPair = await Fetcher.fetchPairData(WETH[ChainId.MAINNET], ETH)
+            const DAIUSDCPair = await Fetcher.fetchPairData(USDT, WETH[ChainId.MAINNET])
+
+            const route = new Route([USDCWETHPair, DAIUSDCPair], ETH)
+
+            console.log('------',route.midPrice.toSignificant(6)) // 202.081
+            console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
+            // const pair = await Fetcher.fetchPairData(DAI, ETH)
+            // const route = new Route([pair], ETH)
+            // console.log(route.midPrice.toSignificant(6))
+            // console.log(route.midPrice.invert().toSignificant(6))
+        }
+
+
+        if(active){
+             setTimeout(()=>{
+                 uniswap()
+             },1000)
+
+        }
+
+    },[active])
 
     const onLaunch = async () => {
         console.log('on stake launch')

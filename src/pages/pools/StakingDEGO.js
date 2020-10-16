@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import {mainContext} from "../../reducer";
-import {useDEGOStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import {
     ClaimRewardModal,
@@ -33,7 +33,7 @@ export const StakingDEGO = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useDEGOStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('DEGO')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)

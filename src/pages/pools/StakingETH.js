@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import {mainContext} from "../../reducer";
-import {useETHStaking} from "../../components/pool/Hooks";
+import {useStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import ERC20 from "../../web3/abi/ERC20.json";
 import {getETHAddress, getETHStakingAddress} from "../../web3/address";
@@ -21,11 +21,11 @@ import {
     StakeModal, UnstakedTokensModal,
     UnstakeModal
 } from "../../components/Modals";
-import {BOTLightIcon, UniswapBlackIcon, UniswapLightIcon} from "../../icons";
+import {UniswapBlackIcon, UniswapLightIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import Web3 from "web3";
-import {formatAmount, weiDiv} from "../../utils/format";
-import {ChainId, Fetcher, Route, Token, WETH, Pair, TokenAmount} from "@uniswap/sdk";
+import {formatAmount} from "../../utils/format";
+import {ChainId, Token, Pair, TokenAmount} from "@uniswap/sdk";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -34,7 +34,7 @@ export const StakingETH = () => {
 
     const {dispatch, state} = useContext(mainContext);
     const {showFailedTransactionModal} = state
-    const {balance, rewards, stakedAmount, stakedTime, total} = useETHStaking()
+    const {balance, rewards, stakedAmount, stakedTime, total} = useStaking('ETH')
     const [staking, setStaking] = useState(false)
     const [unStaking, setUnStaking] = useState(false)
     const [claiming, setClaiming] = useState(false)
