@@ -15,7 +15,7 @@ import {
     waitingForConfirm, waitingForInit,
     waitingPending
 } from "../../const";
-import {formatAmount} from "../../utils/format";
+import {formatAmount, weiDiv} from "../../utils/format";
 import {
     ClaimRewardModal,
     FailedTransactionModal,
@@ -690,7 +690,7 @@ export const StakingMEME = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>
@@ -1086,7 +1086,7 @@ export const StakingMEME = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>

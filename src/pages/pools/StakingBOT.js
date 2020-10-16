@@ -22,7 +22,7 @@ import {
 import {mainContext} from "../../reducer";
 import {useBOTStaking} from "../../components/pool/Hooks";
 import {BackButton} from "../../components/BackButton";
-import {formatAmount} from "../../utils/format";
+import {formatAmount, weiDiv} from "../../utils/format";
 import {BOTLightIcon, BOTRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 
@@ -347,7 +347,7 @@ export const StakingBOT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>
@@ -398,7 +398,7 @@ export const StakingBOT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>

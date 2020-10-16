@@ -24,7 +24,7 @@ import {
     waitingForConfirm, waitingForInit,
     waitingPending
 } from "../../const";
-import {formatAmount} from "../../utils/format";
+import {formatAmount, weiDiv} from "../../utils/format";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -388,7 +388,7 @@ export const StakingDONUT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>
@@ -483,7 +483,7 @@ export const StakingDONUT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {(stakedAmount && total) && weiDiv(stakedAmount, total)} %
                                 </dd>
 
                             </div>

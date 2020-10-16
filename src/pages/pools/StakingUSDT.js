@@ -19,12 +19,12 @@ import StakingRewardsV2 from "../../web3/abi/StakingRewardsV2.json";
 import {
     HANDLE_SHOW_CONNECT_MODAL,
     HANDLE_SHOW_FAILED_TRANSACTION_MODAL,
-    HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
+    HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL, REQUESTING_DATA,
     waitingForApprove,
     waitingForConfirm, waitingForInit,
     waitingPending
 } from "../../const";
-import {formatAmount} from "../../utils/format";
+import {formatAmount, weiDiv} from "../../utils/format";
 
 const {toWei, fromWei} = Web3.utils
 
@@ -488,7 +488,8 @@ export const StakingUSDT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    13.11
+                                    {REQUESTING_DATA}
+
                                 </dd>
 
                             </div>
@@ -500,7 +501,7 @@ export const StakingUSDT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    0.112
+                                    {REQUESTING_DATA}
                                 </dd>
 
                             </div>

@@ -9,7 +9,7 @@ import StakingRewardsV2 from "../../web3/abi/StakingRewardsV2.json";
 import {
     HANDLE_SHOW_CONNECT_MODAL,
     HANDLE_SHOW_FAILED_TRANSACTION_MODAL,
-    HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
+    HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL, REQUESTING_DATA,
     waitingForApprove,
     waitingForConfirm, waitingForInit,
     waitingPending
@@ -24,7 +24,7 @@ import {
 import {BOTLightIcon, UniswapBlackIcon, UniswapLightIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import Web3 from "web3";
-import {formatAmount} from "../../utils/format";
+import {formatAmount, weiDiv} from "../../utils/format";
 import {ChainId, Fetcher, Route, Token, WETH, Pair, TokenAmount} from "@uniswap/sdk";
 
 const {toWei, fromWei} = Web3.utils
@@ -512,7 +512,7 @@ export const StakingETH = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    13.11
+                                    {REQUESTING_DATA}
                                 </dd>
 
                             </div>
@@ -524,7 +524,7 @@ export const StakingETH = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    0.112
+                                    {REQUESTING_DATA}
                                 </dd>
 
                             </div>
@@ -536,7 +536,7 @@ export const StakingETH = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    15.11%
+                                    {REQUESTING_DATA}
                                 </dd>
 
                             </div>

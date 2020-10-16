@@ -130,6 +130,7 @@ export const useBOTStaking = () =>{
         }catch (e) {
             console.log('load events error:',e)
         }
+
         
         if(active){
             try{
