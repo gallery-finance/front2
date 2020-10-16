@@ -165,7 +165,7 @@ export const useBOTStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
