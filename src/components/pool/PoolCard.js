@@ -66,7 +66,7 @@ export const PoolCard = ({pool}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{apy? formatAmount(apy) : REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-green">{REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">

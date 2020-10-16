@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import Web3 from "web3";
 import {mainContext} from "../../reducer";
-import {useETHStaking, useMEMEStaking} from "../../components/pool/Hooks";
+import {useMEMEStaking} from "../../components/pool/Hooks";
 import {getContract, useActiveWeb3React} from "../../web3";
 import ERC20 from "../../web3/abi/ERC20.json";
 import {getMEMOAddress, getMEMOStakingAddress} from "../../web3/address";
@@ -23,7 +23,7 @@ import {
     StakeModal, UnstakedTokensModal,
     UnstakeModal
 } from "../../components/Modals";
-import {DegoLightIcon, DegoRedIcon} from "../../icons";
+import {PineappleLightIcon, PineappleRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 
 const {toWei, fromWei} = Web3.utils
@@ -1119,7 +1119,7 @@ export const StakingMEME = () => {
                             amount={amount}
                             symbol={'MEME'}
                             tokenName={'Meme Token'}
-                            icon={<DegoLightIcon width={43} height={43}/>}
+                            icon={<PineappleLightIcon width={43} height={43}/>}
                             balance={balance}
                             onChange={(e) => {
                                 setAmount(e.target.value)
@@ -1142,7 +1142,7 @@ export const StakingMEME = () => {
                         <UnstakeModal
                             amount={amount}
                             tokenName={'Meme Token'}
-                            icon={<DegoRedIcon width={43} height={43}/>}
+                            icon={<PineappleRedIcon width={43} height={43}/>}
                             symbol={'MEME'}
                             balance={stakedAmount}
                             onChange={(e) => {
