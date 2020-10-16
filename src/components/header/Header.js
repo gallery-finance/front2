@@ -88,9 +88,9 @@ export const Header = () => {
                             </ul>
                         </nav>
 
-                        <div className="header__btn">
+                        {!active && ( <div className="header__btn">
                             <div className="buttonContainer">
-                                {!active && (
+
                                     <button
                                         onClick={() => {
                                             dispatch({
@@ -104,22 +104,24 @@ export const Header = () => {
                                     >
                                         <span onClick={() => {}}>Unlock Wallet</span>
                                     </button>
-                                )}
+
                             </div>
-                        </div>
+                        </div>)}
+
+                        {active && (
+                            <div className="header-account">
+                                <div className="balance">
+                                    <p>{glfBalance? formatAmount(glfBalance): 0} GLF</p>
+                                </div>
+                                <div className="address">
+                                    {formatAddress(account)}
+                                    <div className="point"></div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
-                    {active && (
-                        <div className="header-account">
-                            <div className="balance">
-                                <p>{glfBalance? formatAmount(glfBalance): 0}</p>
-                            </div>
-                            <div className="address">
-                                {formatAddress(account)}
-                                <div className="point"></div>
-                            </div>
-                        </div>
-                    )}
+
                 </div>
 
                 <div className="visible-md">

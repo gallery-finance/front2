@@ -159,7 +159,7 @@ export const useBOTStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getBotStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
@@ -259,7 +259,7 @@ export const useETHStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getETHStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
@@ -358,7 +358,7 @@ export const useUSDTStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getUSDTStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
@@ -457,7 +457,7 @@ export const useDONUTStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getDONUTStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
@@ -556,7 +556,7 @@ export const useMEMEStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;
@@ -655,7 +655,7 @@ export const useDEGOStaking = () =>{
                 const contract = getContract(library, StakingRewardsV2.abi, getDEGOStakingAddress(chainId))
                 contract.methods.lastUpdateAt(account).call().then().then(res =>{
                     console.log('bot lastUpdateAt:',res)
-                    if(res === 0){
+                    if(res == 0){
                         setStakedTime(res)
                     }else {
                         const time = res * 1000;

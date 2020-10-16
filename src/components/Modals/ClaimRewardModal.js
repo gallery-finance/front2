@@ -29,7 +29,7 @@ export const ClaimRewardModal = ({onCancel, onConfirm, rewards, stakedTime}) => 
                             </div>
                         </dl>
                         <p className="form-app__note">
-                            {`You will get ${rewards && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent(stakedTime)) / 100)).toString()))} GLF (${getPercent()} % of your GLF) if you will claim
+                            {`You will get ${(rewards && stakedTime) && (formatAmount((new BigNumber(rewards).multipliedBy((100-getPercent(stakedTime)) / 100)).toFixed(0).toString()))} GLF (${getPercent(stakedTime)} % of your GLF) if you will claim
                             your reward now`}
                         </p>
                         <div className="claim-reward__columns">

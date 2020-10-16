@@ -386,7 +386,7 @@ export const StakingBOT = () => {
                                 </dt>
 
                                 <dd className="statistics__dl-dd">
-                                    3,232.32
+                                    {stakedAmount && formatAmount(stakedAmount)}
                                 </dd>
 
                             </div>
