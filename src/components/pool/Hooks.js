@@ -265,7 +265,7 @@ export const useETHStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
@@ -364,7 +364,7 @@ export const useUSDTStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
@@ -463,7 +463,7 @@ export const useDONUTStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
@@ -562,7 +562,7 @@ export const useMEMEStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
@@ -661,7 +661,7 @@ export const useDEGOStaking = () =>{
                         const time = res * 1000;
                         const now = new Date();
                         const lefttime = now - time;
-                        let lefth = Math.floor(lefttime / 1000 / 60);
+                        let lefth = Math.floor(lefttime / 1000 / 60 /60);
                         console.log('bot staked time ',time, lefttime, lefth)
                         setStakedTime(lefth)
                     }
