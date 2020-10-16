@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {BackButton} from "../../components/BackButton";
 import Web3 from "web3";
 import {mainContext} from "../../reducer";
@@ -47,6 +47,7 @@ export const StakingMEME = () => {
     const [amount, setAmount] = useState()
 
     const {account, active, library, chainId} = useActiveWeb3React()
+
 
     const onLaunch = async () => {
         console.log('on stake launch')
