@@ -71,7 +71,7 @@ export const Pools = () => {
                     <div className="card-pool__list">
                         {poolList.map(item =>{
                             return (
-                                <PoolCard loadTotal={(total)=>{
+                                <PoolCard glfPrice={curPrice} loadTotal={(total)=>{
                                     switch (total.token) {
                                         case 'ETH':
                                             setETHStaked(total.total)
@@ -126,7 +126,7 @@ export const Pools = () => {
                                     </dt>
 
                                     <dd className="statistics__dl-dd">
-                                        {loadTotalStaked()}
+                                        $ {loadTotalStaked()}
                                     </dd>
 
                                 </div>

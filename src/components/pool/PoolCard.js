@@ -9,9 +9,11 @@ import {formatAmount} from "../../utils/format";
 import {REQUESTING_DATA} from "../../const";
 import BigNumber from "bignumber.js";
 
-export const PoolCard = ({pool, price, loadTotal}) => {
+export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
 
-    const {total, time, apy} = usePoolCard(pool.type)
+    const {total, time, apy, totalRewards} = usePoolCard(pool.type)
+
+    console.log('apy', pool.type,total, price, totalRewards, glfPrice)
 
     const {leftTime, setTime} = useLeftTime()
     const [show, setShow] = useState(false)
@@ -65,7 +67,7 @@ export const PoolCard = ({pool, price, loadTotal}) => {
                                     Pool total
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-blue"> {(total && price)? new BigNumber(formatAmount(total)).multipliedBy(price).toString() :REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-blue"> $ {(total && price)? new BigNumber(formatAmount(total)).multipliedBy(price).toString() :REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
@@ -73,7 +75,9 @@ export const PoolCard = ({pool, price, loadTotal}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-green">{(glfPrice && price && total & totalRewards )?
+                                        `${(new BigNumber(glfPrice).multipliedBy(totalRewards) ).dividedBy((new BigNumber(price).multipliedBy(total))).dividedBy(100).toFixed(6).toString()} %`
+                                        :REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">

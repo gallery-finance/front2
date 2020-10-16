@@ -17,6 +17,8 @@ export const usePoolCard = (token) =>{
     const [ total, setTotal] = useState()
     const [time, setTime] = useState()
     const [apy, setApy] = useState()
+    const [totalRewards, setTotalRewards] = useState()
+
 
 
     useEffect(()=>{
@@ -67,6 +69,16 @@ export const usePoolCard = (token) =>{
 
             }
 
+            try{
+                contract.methods.getTotalRewards().call().then(res =>{
+                    console.log('bot total rewards:',res)
+                    setTotalRewards(res)
+                })
+            }catch (e) {
+                console.log('load totalSupply error:',e)
+
+            }
+
 
             try{
                 contract.methods.startAt().call().then(res =>{
@@ -94,7 +106,7 @@ export const usePoolCard = (token) =>{
 
 
 
-    return {total, time, apy}
+    return {total, time, apy, totalRewards}
 }
 
 
