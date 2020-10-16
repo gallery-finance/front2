@@ -14,7 +14,7 @@ import {
 import {UniswapBlackIcon, UniswapLightIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import ERC20 from "../../web3/abi/ERC20.json";
-import {getETHAddress, getETHStakingAddress, getUSDTAddress, getUSDTStakingAddress} from "../../web3/address";
+import {getUSDTAddress, getUSDTStakingAddress} from "../../web3/address";
 import StakingRewardsV2 from "../../web3/abi/StakingRewardsV2.json";
 import {
     HANDLE_SHOW_CONNECT_MODAL,

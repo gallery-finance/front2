@@ -10,6 +10,7 @@ import {REQUESTING_DATA} from "../../const";
 import {useGLFBalance} from "../Hooks";
 import {formatAmount} from "../../utils/format";
 import {useStatistics} from "./Hooks";
+import { ChainId, Token, TokenAmount, Pair, Route } from '@uniswap/sdk'
 
 
 const poolList = [
@@ -25,6 +26,17 @@ export const Pools = () => {
 
     const {glfBalance} = useGLFBalance()
     const {burnedTotal} = useStatistics()
+
+
+    // useEffect(()=>{
+    //
+    //     const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
+    //     const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
+    //     const HOT_NOT = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
+    //     const route = new Route([HOT_NOT], NOT)
+    //     console.log('midPrice', route.midPrice)
+    //
+    // },[])
     return (
         <div>
             <div/>

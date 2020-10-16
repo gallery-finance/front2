@@ -58,7 +58,7 @@ export const PoolCard = ({pool}) => {
                                     Pool total
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-blue"> $ {total? formatAmount(total) : REQUESTING_DATA}</b>
+                                    <b className="card-pool__dl-blue"> {REQUESTING_DATA}</b>
                                 </dd>
                             </div>
                             <div className="card-pool__dl-row">
