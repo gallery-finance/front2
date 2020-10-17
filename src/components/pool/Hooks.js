@@ -169,7 +169,11 @@ export const useStaking = (token) =>{
                 if(!error){
                     contract.methods.balanceOf(account).call().then(res =>{
                         console.log('bot balanceOf:',res)
-                        setStakedAmount(res)
+                        if(token === 'MEME'){
+                            setStakedAmount(new BigNumber(res).multipliedBy(10000000000).toString())
+                        }else {
+                            setStakedAmount(res)
+                        }
                     })
                 }
 
