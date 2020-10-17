@@ -19,7 +19,7 @@ const poolList = [
     {type: 'ETH', label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`, link: 'staking-eth'},
     {type: 'USDT', label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`, link: 'staking-usdt'},
     {type: 'DEGO', label: 'Gallery Santi',cover: cover_3, pair: `DEGO`, link: 'staking-dego'},
-    {type: 'MEME', label: 'Gallery Picasso',cover: cover_4, pair: `MEME`, link: 'staking-meme'},
+    {type: 'MEME', label: 'Gallery Vincent',cover: cover_4, pair: `MEME`, link: 'staking-meme'},
     {type: 'DONUT', label: 'Gallery Dali',cover: cover_5, pair: `DONUT`, link: 'staking-donut'},
     {type: 'BOT', label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`, link: 'staking-bot'}
 ]
