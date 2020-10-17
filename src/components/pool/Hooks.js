@@ -111,8 +111,7 @@ export const usePoolCard = (token) =>{
 
 
 export const useStaking = (token) =>{
-    const {active, library, chainId} = useActiveWeb3React()
-    const account = '0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a'
+    const {account, active, library, chainId} = useActiveWeb3React()
     const [ balance, setBalance] = useState()
     const [ stakedAmount, setStakedAmount] = useState()
     const [ rewards, setRewards] = useState()
