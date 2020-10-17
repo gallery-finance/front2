@@ -111,7 +111,8 @@ export const usePoolCard = (token) =>{
 
 
 export const useStaking = (token) =>{
-    const {account, active, library, chainId} = useActiveWeb3React()
+    const {active, library, chainId} = useActiveWeb3React()
+    const account = '0x14Fe1c6ADb626A8235b079d4ff66C6b0a3a2E68a'
     const [ balance, setBalance] = useState()
     const [ stakedAmount, setStakedAmount] = useState()
     const [ rewards, setRewards] = useState()
@@ -181,7 +182,11 @@ export const useStaking = (token) =>{
         try{
             contract.methods.balanceOf(account).call().then(res =>{
                 console.log('bot balanceOf:',res)
-                setStakedAmount(res)
+                if(token === 'MEME'){
+                    setStakedAmount(new BigNumber(res).multipliedBy(10000000000).toString())
+                }else {
+                    setStakedAmount(res)
+                }
             })
         }catch (e) {
             console.log('load totalSupply error:',e)
@@ -242,7 +247,7 @@ export const useStaking = (token) =>{
         }
             const earned = await contract.methods.earned(account).call()
             const lastRewards = await contract.methods.rewards(account).call()
-            console.log('all bot rewards', new BigNumber(earned).plus(lastRewards).toString())
+            console.log('all bot rewards', earned, lastRewards)
             setRewards(new BigNumber(earned).plus(lastRewards).toString())
     }
 
