@@ -11,11 +11,11 @@ export const FailedTransactionModal = () => {
             <div className="modal__box">
                 <div className="form-app">
                     <div className="form-app__inner transction-submitted">
-                        <div class="emoji  emoji--sad">
-                            <div class="emoji__face">
-                                <div class="emoji__eyebrows"></div>
-                                <div class="emoji__eyes"></div>
-                                <div class="emoji__mouth"></div>
+                        <div className="emoji  emoji--sad">
+                            <div className="emoji__face">
+                                <div className="emoji__eyebrows"></div>
+                                <div className="emoji__eyes"></div>
+                                <div className="emoji__mouth"></div>
                             </div>
                         </div>
 

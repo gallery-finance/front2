@@ -1,7 +1,7 @@
 import React from "react";
 
 export const GLFIcon = ({ width = 70, height = 70 }) => (
-    <svg class="statistics__logo" width={width} height={height} viewBox="0 0 70 70">
+    <svg className="statistics__logo" width={width} height={height} viewBox="0 0 70 70">
         <circle cx="35" cy="34.5" r="34.5" fill="#1D1D1D"></circle>
         <path
             fillRule="evenodd"
