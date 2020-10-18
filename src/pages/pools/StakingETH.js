@@ -78,7 +78,7 @@ export const StakingETH = () => {
         console.log('starting StakingBOT ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-            showWaitingWalletConfirmModal: waitingForApprove
+            showWaitingWalletConfirmModal: waitingForConfirm
         });
         try {
             const result = await tokenContract.methods.approve(

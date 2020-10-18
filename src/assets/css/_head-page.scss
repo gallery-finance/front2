@@ -41,6 +41,17 @@
 
 	}
 
+	&__audited {
+		margin-top: 8px;
+		height: 64px;
+		line-height: 64px;
+		border-bottom: 1px solid #fff;
+		&:hover{
+			color: var(--yellow);
+			border-bottom: 1px solid var(--yellow);
+		}
+	}
+
 }
 
 .arrow-back {

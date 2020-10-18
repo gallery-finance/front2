@@ -8,9 +8,11 @@ import {
 import {formatAmount} from "../../utils/format";
 import {REQUESTING_DATA} from "../../const";
 import BigNumber from "bignumber.js";
+import Web3 from 'web3'
+
+const {toWei} = Web3.utils
 
 export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
-
     const {total, time, apy, totalRewards} = usePoolCard(pool.type)
 
     console.log('apy', pool.type,total, price, totalRewards, glfPrice)
@@ -75,8 +77,8 @@ export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{(false)?
-                                        `${(new BigNumber(glfPrice).multipliedBy(totalRewards) ).dividedBy((new BigNumber(price).multipliedBy(total))).dividedBy(100).toFixed(6).toString()} %`
+                                    <b className="card-pool__dl-green">{pool.totalRewards === -1 ? '>5000%' :(glfPrice && totalRewards && price && total)?
+                                        `${(new BigNumber(glfPrice).multipliedBy(toWei(pool.totalRewards)).multipliedBy(365).dividedBy(14)).dividedBy((new BigNumber(price).multipliedBy(total))).multipliedBy(100).toFixed(6).toString()} %`
                                         :REQUESTING_DATA}</b>
                                 </dd>
                             </div>

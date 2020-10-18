@@ -145,7 +145,7 @@ export const StakingUSDT = () => {
         console.log('starting StakingBOT ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-            showWaitingWalletConfirmModal: waitingForApprove
+            showWaitingWalletConfirmModal: waitingForConfirm
         });
         try {
             await contract.methods.withdraw(weiAmount)
@@ -590,7 +590,8 @@ export const StakingUSDT = () => {
                 <div className="modal-show">
                     <div className="wrapper">
                         <ClaimedTokensModal
-                            amount={rewards}
+                            rewards={rewards}
+                            stakedTime={stakedTime}
                             symbol={'GLF'}
                             onOk={() => {
                                 setClaimed(false)

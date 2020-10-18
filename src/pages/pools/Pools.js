@@ -16,12 +16,12 @@ import Web3 from 'web3'
 const {toWei, fromWei} = Web3.utils
 
 const poolList = [
-    {type: 'ETH', label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`, link: 'staking-eth'},
-    {type: 'USDT', label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`, link: 'staking-usdt'},
-    {type: 'DEGO', label: 'Gallery Santi',cover: cover_3, pair: `DEGO`, link: 'staking-dego'},
-    {type: 'MEME', label: 'Gallery Picasso',cover: cover_4, pair: `MEME`, link: 'staking-meme'},
-    {type: 'DONUT', label: 'Gallery Dali',cover: cover_5, pair: `DONUT`, link: 'staking-donut'},
-    {type: 'BOT', label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`, link: 'staking-bot'}
+    {type: 'ETH', label: 'Gallery Qingming',cover: cover_1, pair: `GLF / ETH`, link: 'staking-eth', totalRewards: -1},
+    {type: 'USDT', label: 'Gallery Da Vinci',cover: cover_2, pair: `GLF / USDT`, link: 'staking-usdt', totalRewards: -1},
+    {type: 'DEGO', label: 'Gallery Santi',cover: cover_3, pair: `DEGO`, link: 'staking-dego', totalRewards: '1071.43'},
+    {type: 'MEME', label: 'Gallery Vincent',cover: cover_4, pair: `MEME`, link: 'staking-meme', totalRewards: '1071.43'},
+    {type: 'DONUT', label: 'Gallery Dali',cover: cover_5, pair: `DONUT`, link: 'staking-donut', totalRewards: '1071.43'},
+    {type: 'BOT', label: 'Gallery Kandinsky',cover: cover_6, pair: `BOT`, link: 'staking-bot', totalRewards: '1071.43'}
 ]
 
 export const Pools = () => {
@@ -64,6 +64,10 @@ export const Pools = () => {
                             Buy GLF
                         </a>
                     </div>
+
+                    <a className="head-page__audited"  target="_blank" href="https://github.com/gallery-finance/assets/raw/master/Gallery%20Auditing%20report.pdf">
+                        audited by anchain.ai
+                    </a>
                 </header>
 
 

@@ -145,7 +145,7 @@ export const StakingDEGO = () => {
         console.log('starting StakingBOT BOT', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-            showWaitingWalletConfirmModal: waitingForApprove
+            showWaitingWalletConfirmModal: waitingForConfirm
         });
         try {
             await contract.methods.withdraw(weiAmount)

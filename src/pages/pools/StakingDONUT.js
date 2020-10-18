@@ -144,7 +144,7 @@ export const StakingDONUT = () => {
         console.log('starting StakingBOT ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-            showWaitingWalletConfirmModal: waitingForApprove
+            showWaitingWalletConfirmModal: waitingForConfirm
         });
         try {
             await contract.methods.withdraw(weiAmount)

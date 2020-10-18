@@ -56,7 +56,7 @@ export const usePoolCard = (token) =>{
 
             try{
                 contract.methods.totalSupply().call().then(res =>{
-                    console.log('bot totalSupply:',res)
+                    console.log(`${token} totalSupply:`,res)
                     if(token === 'MEME'){
                         console.log('mene: token staked',res)
                         setTotal(new BigNumber(res).multipliedBy(10000000000).toString())
@@ -71,7 +71,7 @@ export const usePoolCard = (token) =>{
 
             try{
                 contract.methods.getTotalRewards().call().then(res =>{
-                    console.log('bot total rewards:',res)
+                    console.log(`${token} total rewards:`,res)
                     setTotalRewards(res)
                 })
             }catch (e) {
