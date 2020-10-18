@@ -26,7 +26,6 @@ import {
 import {PineappleLightIcon, PineappleRedIcon} from "../../icons";
 import {ClaimedTokensModal} from "../../components/Modals/ClaimedTokensModal";
 import BigNumber from "bignumber.js";
-import {ChainId, Token, WETH, Fetcher, Trade, Route, TokenAmount, TradeType, Pair} from '@uniswap/sdk'
 
 const {toWei, fromWei} = Web3.utils
 
@@ -49,36 +48,6 @@ export const StakingMEME = () => {
 
     const {account, active, library, chainId} = useActiveWeb3React()
 
-    useEffect(()=>{
-        const uniswap = async (token1, token2, charID = 1) => {
-            const USDT = new Token(ChainId.MAINNET, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6)
-            //const ETH = new Token(ChainId.MAINNET, '0x710980bb4a0866e9ec162ccd84439dda5a04b99c', 18)
-            const ETH = await Fetcher.fetchTokenData(chainId, '0x5beabaebb3146685dd74176f68a0721f91297d37')
-            console.log('eth--->',ETH)
-// note that you may want/need to handle this async code differently,
-// for example if top-level await is not an option
-            const USDCWETHPair = await Fetcher.fetchPairData(WETH[ChainId.MAINNET], ETH)
-            const DAIUSDCPair = await Fetcher.fetchPairData(USDT, WETH[ChainId.MAINNET])
-
-            const route = new Route([USDCWETHPair, DAIUSDCPair], ETH)
-
-            console.log('------',route.midPrice.toSignificant(6)) // 202.081
-            console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
-            // const pair = await Fetcher.fetchPairData(DAI, ETH)
-            // const route = new Route([pair], ETH)
-            // console.log(route.midPrice.toSignificant(6))
-            // console.log(route.midPrice.invert().toSignificant(6))
-        }
-
-
-        if(active){
-             setTimeout(()=>{
-                 uniswap()
-             },1000)
-
-        }
-
-    },[active])
 
     const onLaunch = async () => {
         console.log('on stake launch')
@@ -172,12 +141,12 @@ export const StakingMEME = () => {
         }
 
         const contract = getContract(library, StakingRewardsV2.abi, getMEMOStakingAddress(chainId))
-        const weiAmount = toWei(amount, 'ether');
+        let weiAmount = new BigNumber(amount).multipliedBy('100000000').toString();
 
         console.log('starting StakingBOT ETH', account, weiAmount)
         dispatch({
             type: HANDLE_SHOW_WAITING_WALLET_CONFIRM_MODAL,
-            showWaitingWalletConfirmModal: waitingForApprove
+            showWaitingWalletConfirmModal: waitingForConfirm
         });
         try {
             await contract.methods.withdraw(weiAmount)

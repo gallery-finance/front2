@@ -10,8 +10,7 @@ import {getPercent} from "../../utils/time";
 const {fromWei} =Web3.utils
 
 export const ClaimedTokensModal = ({onOk, rewards, symbol,stakedTime}) => {
-    const { dispatch } = useContext(mainContext);
-
+    console.log('ClaimedTokensModal',rewards,stakedTime)
     return (
         <div className="modal">
             <div className="modal__box">
