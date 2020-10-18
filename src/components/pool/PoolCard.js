@@ -77,7 +77,7 @@ export const PoolCard = ({pool, price, loadTotal, glfPrice}) => {
                                     APY
                                 </dt>
                                 <dd className="card-pool__dl-dd">
-                                    <b className="card-pool__dl-green">{pool.totalRewards === -1 ? '>1000%' :(glfPrice && totalRewards && price && total)?
+                                    <b className="card-pool__dl-green">{pool.totalRewards === -1 ? '>5000%' :(glfPrice && totalRewards && price && total)?
                                         `${(new BigNumber(glfPrice).multipliedBy(toWei(pool.totalRewards)).multipliedBy(365).dividedBy(14)).dividedBy((new BigNumber(price).multipliedBy(total))).multipliedBy(100).toFixed(6).toString()} %`
                                         :REQUESTING_DATA}</b>
                                 </dd>
