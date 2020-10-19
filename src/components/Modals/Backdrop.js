@@ -18,7 +18,7 @@ export const Backdrop = ({ isOpen, setIsOpen }) => {
       <div
         style={{
           position: 'fixed',
-          zIndex: '20',
+          zIndex: '5',
           top: '0',
           left: '0',
           width: '100%',
